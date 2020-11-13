@@ -1,25 +1,38 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    "pages/openapi/openapi",
-    "pages/openapi/serverapi/serverapi",
-    "pages/openapi/callback/callback",
-    "pages/openapi/cloudid/cloudid",
-    "pages/im/im",
-    "pages/im/room/room"
+    "pages/orders/orders",
+    "pages/myself/myself",
+    "pages/agreement/agreement",
+    "pages/about-us/about-us"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "天鹰共享",
+    "navigationBarTitleText": "西电跑跑",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#E9E9E9",
+    "selectedColor": "#004181",
+    "list": [{
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/index1.png",
+        "selectedIconPath": "images/index2.png"
+      },{
+        "pagePath": "pages/orders/orders",
+        "text": "订单",
+        "iconPath": "images/orders1.png",
+        "selectedIconPath": "images/orders2.png"
+      },{
+        "pagePath": "pages/myself/myself",
+        "text": "我的",
+        "iconPath": "images/myself1.png",
+        "selectedIconPath": "images/myself2.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2"
