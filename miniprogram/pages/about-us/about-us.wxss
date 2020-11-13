@@ -1,0 +1,27 @@
+/* pages/about-us/about-us.wxss */
+page {
+  background: #e9e9e9;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 26rpx;
+}
+
+.leader {
+  padding: 150rpx 225rpx 80rpx 225rpx;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+
+.leader image {
+  width: 300rpx;
+  height: 300rpx;
+}
+
+.p {
+  line-height: 40rpx;
+  padding: 20rpx 40rpx;
+  text-indent: 2em;
+}
