@@ -13,7 +13,7 @@
     <swiper-item>
       <view class="order-item" wx:for="{{receiveList}}" wx:key="item" id="{{index}}" bindtap="ReceiveOrderDetails">
         <view>
-          <image src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/{{item.package.kind}}.png"></image>
+          <image src="../../images/{{item.package.kind}}.png"></image>
         </view>
         <view class="content">
           <view>取件：{{item.package.getPack}}</view>
@@ -30,7 +30,7 @@
     <swiper-item>
       <view class="order-item" wx:for="{{announceList}}" wx:key="item" id="{{index}}"  bindtap="AnnounceOrderDetails">
         <view>
-          <image src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/{{item.package.kind}}.png"></image>
+          <image src="../../images/{{item.package.kind}}.png"></image>
         </view>
         <view class="content">
           <view>取件：{{item.package.getPack}}</view>
@@ -97,7 +97,7 @@
     <view class="content" catchtap="kongbai">
       <view class="title">详细信息</view>
         <scroll-view wx:if="{{outReceiveOrder.deliveried == true}}" class="in-content" scroll-y>
-          <image  src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/{{outReceiveOrder.package.kind}}.png"></image>
+          <image  src="../../images/{{outReceiveOrder.package.kind}}.png"></image>
           <view>取货地点：{{outReceiveOrder.package.getPack}}</view>
           <view>送达地点：{{outReceiveOrder.package.moveTo[0]}} | {{outReceiveOrder.package.moveTo[1]}} | {{outReceiveOrder.package.moveTo[2]}}</view>
           <view>发布时间：{{outReceiveOrder.announceMonth}}-{{outReceiveOrder.announceDay}} {{outReceiveOrder.announceHour}}:{{outReceiveOrder.announceMinutes}}</view>
@@ -107,7 +107,7 @@
           <view>备注：{{outReceiveOrder.package.remarks}}</view>
         </scroll-view>
         <scroll-view wx:if="{{outReceiveOrder.deliveried == false}}" class="in-content" scroll-y>
-          <image  src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/{{outReceiveOrder.package.kind}}.png"></image>
+          <image  src="../../images/{{outReceiveOrder.package.kind}}.png"></image>
           <view>取货地点：{{outReceiveOrder.package.getPack}}</view>
           <view>送达地点：{{outReceiveOrder.package.moveTo[0]}} | {{outReceiveOrder.package.moveTo[1]}} | {{outReceiveOrder.package.moveTo[2]}}</view>
           <view>发布时间：{{outReceiveOrder.announceMonth}}-{{outReceiveOrder.announceDay}} {{outReceiveOrder.announceHour}}:{{outReceiveOrder.announceMinutes}}</view>
@@ -131,7 +131,7 @@
     <view class="content" catchtap="kongbai">
       <view class="title">详细信息</view>
          <scroll-view wx:if="{{outAnnounceOrder.canceled == true}}" class="in-content" scroll-y>
-          <image  src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/{{outAnnounceOrder.package.kind}}.png"></image>
+          <image  src="../../images/{{outAnnounceOrder.package.kind}}.png"></image>
           <view>取货地点：{{outAnnounceOrder.package.getPack}}</view>
           <view>送达地点：{{outAnnounceOrder.package.moveTo[0]}} | {{outAnnounceOrder.package.moveTo[1]}} | {{outAnnounceOrder.package.moveTo[2]}}</view>
           <view>发布时间：{{outAnnounceOrder.announceMonth}}-{{outAnnounceOrder.announceDay}} {{outAnnounceOrder.announceHour}}:{{outAnnounceOrder.announceMinutes}}</view>
@@ -144,7 +144,7 @@
           <view>收件人手机号：{{outAnnounceOrder.package.pickupNumber}}</view>
         </scroll-view>
         <scroll-view wx:if="{{outAnnounceOrder.canceled != true && outAnnounceOrder.receiver == null}}" class="in-content" scroll-y>
-          <image  src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/{{outAnnounceOrder.package.kind}}.png"></image>
+          <image  src="../../images/{{outAnnounceOrder.package.kind}}.png"></image>
           <view>取货地点：{{outAnnounceOrder.package.getPack}}</view>
           <view>送达地点：{{outAnnounceOrder.package.moveTo[0]}} | {{outAnnounceOrder.package.moveTo[1]}} | {{outAnnounceOrder.package.moveTo[2]}}</view>
           <view>发布时间：{{outAnnounceOrder.announceMonth}}-{{outAnnounceOrder.announceDay}} {{outAnnounceOrder.announceHour}}:{{outAnnounceOrder.announceMinutes}}</view>
@@ -156,7 +156,7 @@
           <view>收件人手机号：{{outAnnounceOrder.package.pickupNumber}}</view>
         </scroll-view>
         <scroll-view wx:if="{{outAnnounceOrder.canceled != true && outAnnounceOrder.receiver != null && outAnnounceOrder.deliveried == false}}" class="in-content" scroll-y>
-          <image  src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/{{outAnnounceOrder.package.kind}}.png"></image>
+          <image  src="../../images/{{outAnnounceOrder.package.kind}}.png"></image>
           <view>取货地点：{{outAnnounceOrder.package.getPack}}</view>
           <view>送达地点：{{outAnnounceOrder.package.moveTo[0]}} | {{outAnnounceOrder.package.moveTo[1]}} | {{outAnnounceOrder.package.moveTo[2]}}</view>
           <view>发布时间：{{outAnnounceOrder.announceMonth}}-{{outAnnounceOrder.announceDay}} {{outAnnounceOrder.announceHour}}:{{outAnnounceOrder.announceMinutes}}</view>
@@ -173,7 +173,7 @@
           <view>接单人QQ号：{{outAnnounceOrder.receiverQq}}</view>
         </scroll-view>
         <scroll-view wx:if="{{outAnnounceOrder.canceled != true && outAnnounceOrder.receiver != null && outAnnounceOrder.deliveried == true}}" class="in-content" scroll-y>
-          <image  src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/{{outAnnounceOrder.package.kind}}.png"></image>
+          <image  src="../../images/{{outAnnounceOrder.package.kind}}.png"></image>
           <view>取货地点：{{outAnnounceOrder.package.getPack}}</view>
           <view>送达地点：{{outAnnounceOrder.package.moveTo[0]}} | {{outAnnounceOrder.package.moveTo[1]}} | {{outAnnounceOrder.package.moveTo[2]}}</view>
           <view>发布时间：{{outAnnounceOrder.announceMonth}}-{{outAnnounceOrder.announceDay}} {{outAnnounceOrder.announceHour}}:{{outAnnounceOrder.announceMinutes}}</view>

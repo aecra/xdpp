@@ -3,10 +3,10 @@
   <view class="banner">
     <swiper autoplay circular>
       <swiper-item>
-        <image src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/index_banner_1.png" data-src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/index_banner_1.png" bindtap="BannerSee"></image>
+        <image src="../../images/banner.jpg" data-src="../../images/banner.jpg" bindtap="BannerSee"></image>
       </swiper-item>
       <swiper-item>
-        <image src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/index_banner_2.png" data-src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/index_banner_2.png" bindtap="BannerSee"></image>
+        <image src="../../images/banner.jpg" data-src="../../images/banner.jpg" bindtap="BannerSee"></image>
       </swiper-item>
     </swiper>
   </view>
@@ -43,7 +43,7 @@
   <view class="order-list">
     <view wx:for="{{orderList}}" wx:key="item" class="order-item" bindtap="PickupOrderDetails" id="{{index}}">
       <view>
-        <image src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/{{item.package.kind}}.png"></image>
+        <image src="../../images/{{item.package.kind}}.png"></image>
       </view>
       <view class="content">
         <view>取件：{{item.package.getPack}}</view>
@@ -60,7 +60,7 @@
     <view class="content" catchtap="kongbai">
       <view class="title">订单详情</view>
       <scroll-view class="in-content" scroll-y>
-        <image  src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/{{outOrder.package.kind}}.png"></image>
+        <image  src="../../images/{{outOrder.package.kind}}.png"></image>
         <view>取货地点：{{outOrder.package.getPack}}</view>
         <view>送达地点：{{outOrder.package.moveTo[0]}} | {{outOrder.package.moveTo[1]}} | {{outOrder.package.moveTo[2]}}</view>
         <view>发布时间：{{outOrder.month}}-{{outOrder.day}} {{outOrder.hour}}:{{outOrder.minutes}}</view>
