@@ -3,10 +3,10 @@
   <view class="banner">
     <swiper autoplay circular>
       <swiper-item>
-        <image src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/my_banner_1.png" data-src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/my_banner_1.png" bindtap="BannerSee"></image>
+        <image src="../../images/banner.jpg" data-src="../../images/banner.jpg" bindtap="BannerSee"></image>
       </swiper-item>
       <swiper-item>
-        <image src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/my_banner_2.png" data-src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/my_banner_2.png" bindtap="BannerSee"></image>
+        <image src="../../images/banner.jpg" data-src="../../images/banner.jpg" bindtap="BannerSee"></image>
       </swiper-item>
     </swiper>
   </view>
@@ -41,13 +41,13 @@
     <view class="ad-item">
       <swiper class="ad-swiper" autoplay vertical circular>
         <swiper-item>
-          <image src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/ad_1.png" data-src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/ad_1.png" bindtap="AdSee"></image>
+          <image src="../../images/banner.jpg" data-src="../../images/banner.jpg" bindtap="AdSee"></image>
         </swiper-item>
         <swiper-item>
-          <image src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/ad_2.png" data-src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/ad_2.png" bindtap="AdSee"></image>
+          <image src="../../images/banner.jpg" data-src="../../images/banner.jpg" bindtap="AdSee"></image>
         </swiper-item>
         <swiper-item>
-          <image src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/ad_3.png" data-src="https://web-1255835707.cos.ap-beijing.myqcloud.com/app/ad_3.png" bindtap="AdSee"></image>
+          <image src="../../images/banner.jpg" data-src="../../images/banner.jpg" bindtap="AdSee"></image>
         </swiper-item>
       </swiper>
     </view>
