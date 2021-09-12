@@ -174,10 +174,10 @@ Page({
   },
   LeavingMessage: function () {
     wx.setClipboardData({
-      data: "2950045792",
+      data: "xdpp@aecra.cn",
       success: function () {
         wx.showToast({
-          title: 'QQ号复制成功'
+          title: '邮箱复制成功'
         })
       }
     })
