@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\Tencent\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-9g3jxgcr2ffa5389 --n quickstartFunctions --r --project "G:\workspace\微信小程序\xiandian-errand" --report_first --report
