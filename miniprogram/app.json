@@ -1,7 +1,8 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/orders/orders"
+        "pages/orders/orders",
+        "pages/myself/myself"
     ],
     "window": {
         "backgroundColor": "#F6F6F6",
