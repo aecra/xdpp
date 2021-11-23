@@ -1,18 +1,47 @@
 // pages/orders/orders.js
+
+const app = getApp()
+
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+        // 用户信息
+        hasUserInfo: false,
+        userInfo: {
+            _id: "",
+            _openid: "",
+            openid: "",
+            defaultaddr: ["", "", ""],
+            name: "",
+            qq: "",
+            registerTime: null,
+            student_id: null,
+            phone: null
+        }
+    },
 
+    // 从 app 页面同步数据
+    DataSync: function () {
+        this.setData({
+            hasUserInfo: app.globalData.hasUserInfo,
+            userInfo: app.globalData.userInfo,
+        })
+
+        // 处理异步问题
+        if (this.data.userInfo.openid == "") {
+            setTimeout(this.DataSync, 200);
+            return;
+        }
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        this.DataSync();
     },
 
     /**
