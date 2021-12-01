@@ -16,6 +16,24 @@ App({
     }
   },
 
+  AddrInit: async function () {
+    let result = await wx.cloud.callFunction({
+      name: 'addr'
+    });
+    let resAddr = result.result.result;
+    this.globalData.addrInfo.allAddrData = resAddr.data[0].addr
+
+    for (let i = 0; i < this.globalData.addrInfo.allAddrData.length; i++) {
+      this.globalData.addrInfo.multiArray[0][i] = this.globalData.addrInfo.allAddrData[i].building;
+    }
+    for (let i = 0; i < this.globalData.addrInfo.allAddrData[this.globalData.addrInfo.multiIndex[0]].floors.length; i++) {
+      this.globalData.addrInfo.multiArray[1][i] = this.globalData.addrInfo.allAddrData[this.globalData.addrInfo.multiIndex[0]].floors[i].floor;
+    }
+    for (let i = 0; i < this.globalData.addrInfo.allAddrData[this.globalData.addrInfo.multiIndex[0]].floors[this.globalData.addrInfo.multiIndex[1]].rooms.length; i++) {
+      this.globalData.addrInfo.multiArray[2][i] = this.globalData.addrInfo.allAddrData[this.globalData.addrInfo.multiIndex[0]].floors[this.globalData.addrInfo.multiIndex[1]].rooms[i].room;
+    }
+  },
+
   LoadInfo: async function () {
     let result = await wx.cloud.callFunction({
       name: 'userinfo'
@@ -39,5 +57,6 @@ App({
     }
 
     this.LoadInfo();
+    this.AddrInit()
   }
 });
