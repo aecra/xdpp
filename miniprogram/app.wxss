@@ -1,1 +1,56 @@
 /**app.wxss**/
+view {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+a{
+  /* 让a元素强制继承祖先元素的样式 */
+  color: inherit;
+  text-decoration: none;
+}
+
+input {
+	border: none;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+input:focus{
+	outline:none;
+}
+
+button {
+	padding: 0;
+	margin: 0;
+	background-color: #fff;
+	border: none;
+	overflow: visible;
+}
+
+.register input {
+	border-radius: 5rpx;
+	border: 1rpx solid rgba(0, 0, 0, 0.226);
+	margin: 20rpx;
+	padding: 10rpx;
+}
+
+.picker {
+	text-align: center;
+	margin: 20rpx;
+	padding: 10rpx;
+  height: 100%;
+}
+
+.register navigator {
+	color: blue;
+	display: inline-block;
+}
+
+.register .checkbox {
+	font-size: 20rpx;
+}
+
+.register switch {
+	transform: scale(0.6, 0.6);
+}
