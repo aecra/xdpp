@@ -1,6 +1,7 @@
 // app.js
 App({
   globalData: {
+    loginDisplay: "none",
 
     // 快递种类
     kindArray: [],
@@ -131,6 +132,9 @@ App({
     if (result.hasUserInfo) {
       this.globalData.hasUserInfo = true;
       this.globalData.userInfo = result.userInfo;
+      this.globalData.loginDisplay = "none";
+    } else {
+      this.globalData.loginDisplay = "flex";
     }
   },
 
