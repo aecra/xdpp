@@ -75,6 +75,53 @@ App({
     }
   },
 
+  bindMultiPickerColumnChange: function (e) {
+    var data = {
+      multiArray: this.globalData.addrInfo.multiArray,
+      multiIndex: this.globalData.addrInfo.multiIndex
+    };
+    data.multiIndex[e.detail.column] = e.detail.value;
+    switch (e.detail.column) {
+      case 0:
+        //第一列改变  设置第二列数据
+        this.globalData.addrInfo.multiArray[1] = [];
+        this.globalData.addrInfo.multiArray[2] = [];
+        for (let i = 0; i < this.globalData.addrInfo.allAddrData[this.globalData.addrInfo.multiIndex[0]].floors.length; i++) {
+          this.globalData.addrInfo.multiArray[1][i] = this.globalData.addrInfo.allAddrData[this.globalData.addrInfo.multiIndex[0]].floors[i].floor;
+        }
+        for (let i = 0; i < this.globalData.addrInfo.allAddrData[this.globalData.addrInfo.multiIndex[0]].floors[this.globalData.addrInfo.multiIndex[1]].rooms.length; i++) {
+          this.globalData.addrInfo.multiArray[2][i] = this.globalData.addrInfo.allAddrData[this.globalData.addrInfo.multiIndex[0]].floors[this.globalData.addrInfo.multiIndex[1]].rooms[i].room;
+        }
+        break;
+      case 1:
+        //第二列改变 设置第三列数据
+        this.globalData.addrInfo.multiArray[2] = [];
+        for (let i = 0; i < this.globalData.addrInfo.allAddrData[this.globalData.addrInfo.multiIndex[0]].floors[this.globalData.addrInfo.multiIndex[1]].rooms.length; i++) {
+          this.globalData.addrInfo.multiArray[2][i] = this.globalData.addrInfo.allAddrData[this.globalData.addrInfo.multiIndex[0]].floors[this.globalData.addrInfo.multiIndex[1]].rooms[i].room;
+        }
+        break;
+      case 2:
+        this.globalData.addrInfo.multiArray = data.multiArray;
+        break;
+    }
+  },
+  bindMultiPickerChange: function (e) {
+    this.globalData.addrInfo.multiIndex = e.detail.value;
+    this.globalData.addrInfo.mybuilding = this.globalData.addrInfo.multiArray[0][this.globalData.addrInfo.multiIndex[0]];
+    this.globalData.addrInfo.myfloor = this.globalData.addrInfo.multiArray[1][this.globalData.addrInfo.multiIndex[1]];
+    this.globalData.addrInfo.myroom = this.globalData.addrInfo.multiArray[2][this.globalData.addrInfo.multiIndex[2]];
+  },
+  ReadAddr: function () {
+    this.addrInfo.mybuilding = this.globalData.userInfo.defaultaddr[0];
+    this.addrInfo.myfloor = this.globalData.userInfo.defaultaddr[0];
+    this.addrInfo.myroom = this.globalData.userInfo.defaultaddr[0];
+  },
+  UpdataAddr: function () {
+    this.globalData.userInfo.defaultaddr[0] = this.globalData.addrInfo.mybuilding;
+    this.globalData.userInfo.defaultaddr[1] = this.globalData.addrInfo.myfloor;
+    this.globalData.userInfo.defaultaddr[2] = this.globalData.addrInfo.myroom;
+  },
+
   LoadInfo: async function () {
     let result = await wx.cloud.callFunction({
       name: 'userinfo'
