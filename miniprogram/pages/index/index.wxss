@@ -56,7 +56,7 @@ page {
 .login .content button {
   width: 60%;
   color: #fff;
-  background-color: #004181;
+  background-color: #AF2125;
   clear: both;
   font-size: 36rpx;
   line-height: 50rpx;
