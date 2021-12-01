@@ -70,7 +70,6 @@ App({
       name: 'packagekind'
     });
     let reskinds = result.result.result;
-    console.log(reskinds);
     for (let i = 0; i < reskinds.data.length; i++) {
       this.globalData.kindArray[i] = reskinds.data[i].kind;
     }
