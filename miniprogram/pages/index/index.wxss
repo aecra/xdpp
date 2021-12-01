@@ -1,1 +1,14 @@
 /* pages/index/index.wxss */
+
+page {
+  background: #e9e9e9;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 26rpx;
+}
+
+.banner image {
+  width: 100%;
+  height: 300rpx;
+}

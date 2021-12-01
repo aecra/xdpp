@@ -1,2 +1,13 @@
 <!--pages/index/index.wxml-->
-<text>pages/index/index.wxml</text>
+<view class="container">
+    <view class="banner">
+        <swiper autoplay circular>
+            <swiper-item>
+                <image src="../../images/banner1.png" data-src="../../images/banner.jpg"></image>
+            </swiper-item>
+            <swiper-item>
+                <image src="../../images/banner2.png" data-src="../../images/banner.jpg"></image>
+            </swiper-item>
+        </swiper>
+    </view>
+</view>
