@@ -2,6 +2,9 @@
 App({
   globalData: {
 
+    // 快递种类
+    kindArray: [],
+    
     // 快递地点
     packArray: [],
 
@@ -62,6 +65,17 @@ App({
     }
   },
 
+  KindInit: async function () {
+    let result = await wx.cloud.callFunction({
+      name: 'packagekind'
+    });
+    let reskinds = result.result.result;
+    console.log(reskinds);
+    for (let i = 0; i < reskinds.data.length; i++) {
+      this.globalData.kindArray[i] = reskinds.data[i].kind;
+    }
+  },
+
   LoadInfo: async function () {
     let result = await wx.cloud.callFunction({
       name: 'userinfo'
@@ -87,5 +101,6 @@ App({
     this.LoadInfo();
     this.AddrInit();
     this.PackInit();
+    this.KindInit();
   }
 });
