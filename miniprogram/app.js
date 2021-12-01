@@ -1,6 +1,24 @@
 // app.js
 App({
   globalData: {
+
+    // 快递地点
+    packArray: [],
+
+    // 宿舍地址信息
+    addrInfo: {
+      multiArray: [
+        [],
+        [],
+        []
+      ],
+      mybuilding: "竹园1号楼",
+      myfloor: "一层",
+      myroom: "1-101",
+      multiIndex: [0, 0, 0],
+      allAddrData: [],
+    },
+
     // 用户信息
     hasUserInfo: false,
     userInfo: {
@@ -34,6 +52,16 @@ App({
     }
   },
 
+  PackInit: async function () {
+    let result = await wx.cloud.callFunction({
+      name: 'packageaddr'
+    });
+    let resAddr = result.result.result;
+    for (let i = 0; i < resAddr.data.length; i++) {
+      this.globalData.packArray[i] = resAddr.data[i].addr;
+    }
+  },
+
   LoadInfo: async function () {
     let result = await wx.cloud.callFunction({
       name: 'userinfo'
@@ -57,6 +85,7 @@ App({
     }
 
     this.LoadInfo();
-    this.AddrInit()
+    this.AddrInit();
+    this.PackInit();
   }
 });
