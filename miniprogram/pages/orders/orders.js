@@ -8,6 +8,20 @@ Page({
      * 页面的初始数据
      */
     data: {
+        // 宿舍地址信息
+        addrInfo: {
+            multiArray: [
+                [],
+                [],
+                []
+            ],
+            mybuilding: "竹园1号楼",
+            myfloor: "一层",
+            myroom: "1-101",
+            multiIndex: [0, 0, 0],
+            allAddrData: [],
+        },
+
         // 用户信息
         hasUserInfo: false,
         userInfo: {
@@ -26,6 +40,7 @@ Page({
     // 从 app 页面同步数据
     DataSync: function () {
         this.setData({
+            addrInfo: app.globalData.addrInfo,
             hasUserInfo: app.globalData.hasUserInfo,
             userInfo: app.globalData.userInfo,
         })
