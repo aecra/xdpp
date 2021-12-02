@@ -8,6 +8,8 @@ Page({
      * 页面的初始数据
      */
     data: {
+        loginDisplay: "none",
+
         // 宿舍地址信息
         addrInfo: {
             multiArray: [
@@ -20,6 +22,17 @@ Page({
             myroom: "1-101",
             multiIndex: [0, 0, 0],
             allAddrData: [],
+        },
+
+        LoginMultiPickerColumnChange: function (e) {
+            app.bindMultiPickerColumnChange(e);
+            app.UpdataAddr();
+            this.DataSync();
+        },
+        LoginMultiPickerChange: function (e) {
+            app.bindMultiPickerChange(e);
+            app.UpdataAddr();
+            this.DataSync();
         },
 
         // 用户信息
@@ -40,6 +53,7 @@ Page({
     // 从 app 页面同步数据
     DataSync: function () {
         this.setData({
+            loginDisplay: app.globalData.loginDisplay,
             addrInfo: app.globalData.addrInfo,
             hasUserInfo: app.globalData.hasUserInfo,
             userInfo: app.globalData.userInfo,
