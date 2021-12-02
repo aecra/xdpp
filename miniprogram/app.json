@@ -11,6 +11,26 @@
         "navigationBarTitleText": "仙电跑腿",
         "navigationBarTextStyle": "black"
     },
+    "tabBar": {
+        "color": "#E9E9E9",
+        "selectedColor": "#AF2125",
+        "list": [{
+            "pagePath": "pages/index/index",
+            "text": "首页",
+            "iconPath": "images/index1.png",
+            "selectedIconPath": "images/index2.png"
+        }, {
+            "pagePath": "pages/orders/orders",
+            "text": "订单",
+            "iconPath": "images/orders1.png",
+            "selectedIconPath": "images/orders2.png"
+        }, {
+            "pagePath": "pages/myself/myself",
+            "text": "我的",
+            "iconPath": "images/myself1.png",
+            "selectedIconPath": "images/myself2.png"
+        }]
+    },
     "sitemapLocation": "sitemap.json",
     "style": "v2"
 }
