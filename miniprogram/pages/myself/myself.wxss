@@ -1,4 +1,9 @@
 /* pages/myself/myself.wxss */
+.banner image {
+  width: 100%;
+  height: 300rpx;
+}
+
 .login {
   position: fixed;
   z-index: 1;
