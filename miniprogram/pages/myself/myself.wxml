@@ -10,6 +10,12 @@
       </swiper-item>
     </swiper>
   </view>
+
+  <view class="score">
+    <button bindtap="UpdataMotto">
+      <text>{{oneMotto}}</text>
+    </button>
+  </view>
 </view>
 
 <view class="login" style="display:{{loginDisplay}}">
