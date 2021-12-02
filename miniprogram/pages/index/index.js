@@ -50,6 +50,14 @@ Page({
         this.DataSync();
       },
 
+      Register(e){
+        let values = e.detail.value;
+        values.addr[0] = this.data.addrInfo.multiArray[0][values.addr[0]];
+        values.addr[1] = this.data.addrInfo.multiArray[1][values.addr[1]];
+        values.addr[2] = this.data.addrInfo.multiArray[2][values.addr[2]];
+        app.Register(values);
+    },
+
     // 从 app 页面同步数据
     DataSync: function () {
         this.setData({

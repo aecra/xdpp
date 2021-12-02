@@ -5,7 +5,7 @@ App({
 
     // 快递种类
     kindArray: [],
-    
+
     // 快递地点
     packArray: [],
 
@@ -121,6 +121,22 @@ App({
     this.globalData.userInfo.defaultaddr[0] = this.globalData.addrInfo.mybuilding;
     this.globalData.userInfo.defaultaddr[1] = this.globalData.addrInfo.myfloor;
     this.globalData.userInfo.defaultaddr[2] = this.globalData.addrInfo.myroom;
+  },
+
+  Register: async function (data) {
+    let result = await wx.cloud.callFunction({
+      name: 'register',
+      data: data
+    });
+    result = result.result;
+    if (result.error === null) {
+      this.LoadInfo();
+    } else {
+      wx.showToast({
+        title: result.error,
+        icon: "none"
+      })
+    }
   },
 
   LoadInfo: async function () {
