@@ -1,0 +1,20 @@
+{
+  "name": "xiandian-errand",
+  "version": "1.0.0",
+  "description": "互惠互利的西电er跑腿平台，当前仅支持快递代取服务。",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/aecra/xiandian-errand.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.3.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3"
+  }
+}

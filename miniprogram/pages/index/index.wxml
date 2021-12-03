@@ -1,43 +1,43 @@
 <!--pages/index/index.wxml-->
 <view class="container">
-    <view class="banner">
-        <swiper autoplay circular>
-            <swiper-item>
-                <image src="../../images/banner1.png" data-src="../../images/banner.jpg"></image>
-            </swiper-item>
-            <swiper-item>
-                <image src="../../images/banner2.png" data-src="../../images/banner.jpg"></image>
-            </swiper-item>
-        </swiper>
-    </view>
+  <view class="banner">
+    <swiper autoplay circular>
+      <swiper-item>
+        <image src="../../images/banner1.png" data-src="../../images/banner.jpg"></image>
+      </swiper-item>
+      <swiper-item>
+        <image src="../../images/banner2.png" data-src="../../images/banner.jpg"></image>
+      </swiper-item>
+    </swiper>
+  </view>
 </view>
 
 <view class="login" style="display:{{loginDisplay}}">
-    <form class="content" bindsubmit="Register">
-        <view class="title">注册</view>
-        <scroll-view class="in-content" scroll-y>
-            <form class="register">
-                <view>
-                    <input placeholder="姓名" name="name"></input>
-                </view>
-                <view>
-                    <input placeholder="11位学号" name="student_id"></input>
-                </view>
-                <view>
-                    <input placeholder="手机号" name="phone"></input>
-                </view>
-                <view>
-                    <input placeholder="QQ号" name="qq"></input>
-                </view>
-                <view>
-                    <picker mode="multiSelector" bindchange="LoginMultiPickerChange" bindcolumnchange="LoginMultiPickerColumnChange" value="{{addrInfo.multiIndex}}" range="{{addrInfo.multiArray}}" name="addr">
-                        <view class="picker">
-                            {{userInfo.defaultaddr[0]}} | {{userInfo.defaultaddr[1]}} | {{userInfo.defaultaddr[2]}}
-                        </view>
-                    </picker>
-                </view>
-            </form>
-        </scroll-view>
-        <button formType="submit" bindgetuserinfo="Register">确认</button>
-    </form>
+  <form class="content" bindsubmit="Register">
+    <view class="title">注册</view>
+    <scroll-view class="in-content" scroll-y>
+      <form class="register">
+        <view>
+          <input placeholder="姓名" name="name"></input>
+        </view>
+        <view>
+          <input placeholder="11位学号" name="student_id"></input>
+        </view>
+        <view>
+          <input placeholder="手机号" name="phone"></input>
+        </view>
+        <view>
+          <input placeholder="QQ号" name="qq"></input>
+        </view>
+        <view>
+          <picker mode="multiSelector" bindchange="LoginMultiPickerChange" bindcolumnchange="LoginMultiPickerColumnChange" value="{{addrInfo.multiIndex}}" range="{{addrInfo.multiArray}}" name="addr">
+            <view class="picker">
+              {{userInfo.defaultaddr[0]}} | {{userInfo.defaultaddr[1]}} | {{userInfo.defaultaddr[2]}}
+            </view>
+          </picker>
+        </view>
+      </form>
+    </scroll-view>
+    <button formType="submit" bindgetuserinfo="Register">确认</button>
+  </form>
 </view>

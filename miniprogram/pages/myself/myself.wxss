@@ -1,49 +1,49 @@
 /* pages/myself/myself.wxss */
 .login {
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .login .content {
-    background-color: #fff;
-    width: 80%;
-    height: 65%;
-    border-radius: 50rpx;
-    margin: auto;
-    padding: 50rpx;
-    box-sizing: border-box;
-    position: relative;
-    font-size: 28rpx;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  background-color: #fff;
+  width: 80%;
+  height: 65%;
+  border-radius: 50rpx;
+  margin: auto;
+  padding: 50rpx;
+  box-sizing: border-box;
+  position: relative;
+  font-size: 28rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .login .content .title {
-    font-size: 36rpx;
-    text-align: center;
-    padding-bottom: 50rpx;
+  font-size: 36rpx;
+  text-align: center;
+  padding-bottom: 50rpx;
 }
 
 .login .content .in-content {
-    padding: 0 0 30rpx 0;
-    flex-grow: 1;
-    overflow: hidden;
+  padding: 0 0 30rpx 0;
+  flex-grow: 1;
+  overflow: hidden;
 }
 
 .login .content button {
-    width: 60%;
-    color: #fff;
-    background-color: #AF2125;
-    clear: both;
-    font-size: 36rpx;
-    line-height: 50rpx;
+  width: 60%;
+  color: #fff;
+  background-color: #AF2125;
+  clear: both;
+  font-size: 36rpx;
+  line-height: 50rpx;
 }
