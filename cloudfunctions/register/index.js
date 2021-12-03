@@ -1,17 +1,10 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk');
 
+cloud.init();
+
 // 云函数入口函数
 exports.main = async (event) => {
-  if (!cloud) {
-    // eslint-disable-next-line no-console
-    console.error('请使用 2.2.3 或以上的基础库以使用云能力');
-  } else {
-    cloud.init({
-      env: 'cloud1-9g3jxgcr2ffa5389',
-    });
-  }
-
   let error = null;
   const namePatt = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/;
   const studentIdPatt = /^(17|18|19|20)[0-9]{9}$/;
