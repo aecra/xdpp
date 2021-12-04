@@ -1,5 +1,22 @@
 <!--pages/myself/myself.wxml-->
-<text>pages/myself/myself.wxml</text>
+<view class="container">
+  <view class="banner">
+    <swiper autoplay circular>
+      <swiper-item>
+        <image src="../../images/banner1.png" data-src="../../images/banner1.png"></image>
+      </swiper-item>
+      <swiper-item>
+        <image src="../../images/banner2.png" data-src="../../images/banner2.png"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <view class="score">
+    <button bindtap="UpdataMotto">
+      <text>{{oneMotto}}</text>
+    </button>
+  </view>
+</view>
 
 <view class="login" style="display:{{loginDisplay}}">
   <form class="content" bindsubmit="Register">
