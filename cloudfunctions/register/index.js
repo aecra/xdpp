@@ -24,7 +24,7 @@ exports.main = async (event) => {
   if (error !== null) {
     const wxContext = cloud.getWXContext();
     const db = cloud.database();
-    db.collection('userlist').add({
+    await db.collection('userlist').add({
       data: {
         openid: wxContext.OPENID,
         registerTime: new Date(),
