@@ -13,7 +13,7 @@ exports.main = async (event) => {
 
   if (!namePatt.test(event.name)) {
     error = '请正确输入姓名';
-  } else if (!studentIdPatt.test(event.student_id)) {
+  } else if (!studentIdPatt.test(event.studentid)) {
     error = '请正确输入学号';
   } else if (!phonePatt.test(Number(event.phone))) {
     error = '请正确输入手机号';
@@ -31,8 +31,8 @@ exports.main = async (event) => {
         name: event.name,
         phone: event.phone,
         qq: event.qq,
-        student_id: event.student_id,
-        defaultaddr: [event.addr[0], event.addr[1], event.addr[2]],
+        studentid: event.studentid,
+        addr: [event.addr[0], event.addr[1], event.addr[2]],
       },
       fail() {
         error = '注册失败';

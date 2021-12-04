@@ -25,11 +25,11 @@ App({
       _id: '',
       _openid: '',
       openid: '',
-      defaultaddr: ['竹园1号楼', '一层', '1-101'],
+      addr: ['竹园1号楼', '一层', '1-101'],
       name: '',
       qq: '',
       registerTime: null,
-      student_id: null,
+      studentid: null,
       phone: null,
     },
   },
@@ -120,9 +120,9 @@ App({
     addrInfo.myroom = addrInfo.multiArray[2][addrInfo.multiIndex[2]];
   },
   UpdataAddr() {
-    this.globalData.userInfo.defaultaddr[0] = this.globalData.addrInfo.mybuilding;
-    this.globalData.userInfo.defaultaddr[1] = this.globalData.addrInfo.myfloor;
-    this.globalData.userInfo.defaultaddr[2] = this.globalData.addrInfo.myroom;
+    this.globalData.userInfo.addr[0] = this.globalData.addrInfo.mybuilding;
+    this.globalData.userInfo.addr[1] = this.globalData.addrInfo.myfloor;
+    this.globalData.userInfo.addr[2] = this.globalData.addrInfo.myroom;
   },
 
   async Register(data) {

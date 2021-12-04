@@ -21,7 +21,7 @@
           <input placeholder="姓名" name="name"></input>
         </view>
         <view>
-          <input placeholder="11位学号" name="student_id"></input>
+          <input placeholder="11位学号" name="studentid"></input>
         </view>
         <view>
           <input placeholder="手机号" name="phone"></input>
@@ -32,7 +32,7 @@
         <view>
           <picker mode="multiSelector" bindchange="LoginMultiPickerChange" bindcolumnchange="LoginMultiPickerColumnChange" value="{{addrInfo.multiIndex}}" range="{{addrInfo.multiArray}}" name="addr">
             <view class="picker">
-              {{userInfo.defaultaddr[0]}} | {{userInfo.defaultaddr[1]}} | {{userInfo.defaultaddr[2]}}
+              {{userInfo.addr[0]}} | {{userInfo.addr[1]}} | {{userInfo.addr[2]}}
             </view>
           </picker>
         </view>
