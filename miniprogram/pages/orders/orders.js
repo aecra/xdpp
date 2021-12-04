@@ -45,6 +45,18 @@ Page({
     },
   },
 
+  LoginMultiPickerColumnChange(e) {
+    app.bindMultiPickerColumnChange(e);
+    app.UpdataAddr();
+    this.DataSync();
+  },
+
+  LoginMultiPickerChange(e) {
+    app.bindMultiPickerChange(e);
+    app.UpdataAddr();
+    this.DataSync();
+  },
+
   // 从 app 页面同步数据
   DataSync() {
     this.setData({

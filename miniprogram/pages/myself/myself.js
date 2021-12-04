@@ -67,6 +67,18 @@ Page({
     });
   },
 
+  LoginMultiPickerColumnChange(e) {
+    app.bindMultiPickerColumnChange(e);
+    app.UpdataAddr();
+    this.DataSync();
+  },
+
+  LoginMultiPickerChange(e) {
+    app.bindMultiPickerChange(e);
+    app.UpdataAddr();
+    this.DataSync();
+  },
+
   UpdateDisplay(e) {
     this.setData({
       change: e.currentTarget.dataset.change,
