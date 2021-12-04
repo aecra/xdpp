@@ -87,6 +87,18 @@ Page({
     app.Register(values);
   },
 
+  LocalMultiPickerColumnChange(e) {
+    app.bindMultiPickerColumnChange(e);
+    app.UpdataAddr();
+    this.DataSync();
+  },
+
+  LocalMultiPickerChange(e) {
+    app.bindMultiPickerChange(e);
+    app.UpdataAddr();
+    this.DataSync();
+  },
+
   UpdateDisplay(e) {
     this.setData({
       change: e.currentTarget.dataset.change,
@@ -103,17 +115,25 @@ Page({
   async UpdateUserInfo(e) {
     const data = e.detail.value;
     data.type = this.data.change;
+    if(this.data.change === 'addr') {
+      data.addr[0] = this.data.addrInfo.multiArray[0][data.addr[0]];
+      data.addr[1] = this.data.addrInfo.multiArray[1][data.addr[1]];
+      data.addr[2] = this.data.addrInfo.multiArray[2][data.addr[2]];
+    }
     let result = await wx.cloud.callFunction({
       name: 'updateuserinfo',
       data,
     });
-    this.ChangeUpdateDisplay();
     result = result.result;
     if (result.error === null) {
       wx.showToast({
         title: '修改成功',
       });
-      this.LoadInfo();
+      this.ChangeUpdateDisplay();
+      app.LoadInfo();
+      setTimeout(() => {
+        this.DataSync();
+      }, 500);
     } else {
       wx.showToast({
         title: result.error,
