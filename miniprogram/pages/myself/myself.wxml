@@ -16,6 +16,54 @@
       <text>{{oneMotto}}</text>
     </button>
   </view>
+
+  <view class="table">
+    <view class="table-item" data-change="name" bindtap="UpdateDisplay">
+      <view>姓名：{{userInfo.name}}</view>
+      <image src="/images/write.png"></image>
+    </view>
+    <view class="table-item" data-change="phone" bindtap="UpdateDisplay">
+      <view>手机号：{{userInfo.phone}}</view>
+      <image src="/images/write.png"></image>
+    </view>
+    <view class="table-item" data-change="qq" bindtap="UpdateDisplay">
+      <view>QQ号：{{userInfo.qq}}</view>
+      <image src="/images/write.png"></image>
+    </view>
+    <view class="table-item" data-change="studentid" bindtap="UpdateDisplay">
+      <view>学号：{{userInfo.studentid}}</view>
+      <image src="/images/write.png"></image>
+    </view>
+    <view class="table-item" data-change="addr" bindtap="UpdateDisplay">
+      <view>{{userInfo.addr[0]}} | {{userInfo.addr[1]}} | {{userInfo.addr[2]}}</view>
+      <image src="/images/write.png"></image>
+    </view>
+    <view class="table-item">
+      <view>问题反馈：jltian@stu.xidian.edu.cn</view>
+    </view>
+  </view>
+
+  <view class="userinfoupdate" style="display:{{updateDisplay}}" bindtap="ChangeUpdateDisplay">
+    <form class="content" catchtap="Capture" bindsubmit="UpdateUserInfo">
+      <view wx:if="{{change === 'name'}}" class="title">姓名设置</view>
+      <view wx:if="{{change === 'phone'}}" class="title">手机号设置</view>
+      <view wx:if="{{change === 'qq'}}" class="title">QQ号设置</view>
+      <view wx:if="{{change === 'studentid'}}" class="title">学号设置</view>
+      <view wx:if="{{change === 'addr'}}" class="title">收货地址设置</view>
+      <view class="in-content">
+        <input wx:if="{{change === 'name'}}" name="name" placeholder="姓名" value="{{userInfo.name}}"></input>
+        <input wx:if="{{change === 'phone'}}" name="phone" placeholder="手机号" value="{{userInfo.phone}}"></input>
+        <input wx:if="{{change === 'qq'}}" name="qq" placeholder="QQ号" value="{{userInfo.qq}}"></input>
+        <input wx:if="{{change === 'studentid'}}" name="studentid" placeholder="11位学号" value="{{userInfo.studentid}}"></input>
+        <picker wx:if="{{change === 'addr'}}" name="addr" mode="multiSelector" bindchange="LocalMultiPickerChange" bindcolumnchange="LocalMultiPickerColumnChange" value="{{addrInfo.multiIndex}}" range="{{addrInfo.multiArray}}">
+          <view class="picker">
+            {{addrInfo.mybuilding}} | {{addrInfo.myfloor}} | {{addrInfo.myroom}}
+          </view>
+        </picker>
+      </view>
+      <button formType="submit">确定</button>
+    </form>
+  </view>
 </view>
 
 <view class="login" style="display:{{loginDisplay}}">

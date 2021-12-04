@@ -32,6 +32,8 @@ Page({
       '碧山人来 清酒深杯',
     ],
     oneMotto: '',
+    change: '',
+    updateDisplay: 'none',
     loginDisplay: 'none',
 
     // 宿舍地址信息
@@ -64,6 +66,43 @@ Page({
       oneMotto: this.data.motto[(Math.floor(Math.random() * this.data.motto.length))],
     });
   },
+
+  UpdateDisplay(e) {
+    this.setData({
+      change: e.currentTarget.dataset.change,
+    });
+    this.ChangeUpdateDisplay();
+  },
+
+  ChangeUpdateDisplay() {
+    this.setData({
+      updateDisplay: this.data.updateDisplay === 'none' ? 'flex' : 'none',
+    });
+  },
+
+  async UpdateUserInfo(e) {
+    const data = e.detail.value;
+    data.type = this.data.change;
+    let result = await wx.cloud.callFunction({
+      name: 'updateuserinfo',
+      data,
+    });
+    this.ChangeUpdateDisplay();
+    result = result.result;
+    if (result.error === null) {
+      wx.showToast({
+        title: '修改成功',
+      });
+      this.LoadInfo();
+    } else {
+      wx.showToast({
+        title: result.error,
+        icon: 'none',
+      });
+    }
+  },
+
+  Capture() {},
 
   // 从 app 页面同步数据
   DataSync() {
