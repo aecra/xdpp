@@ -115,7 +115,7 @@ Page({
   async UpdateUserInfo(e) {
     const data = e.detail.value;
     data.type = this.data.change;
-    if(this.data.change === 'addr') {
+    if (this.data.change === 'addr') {
       data.addr[0] = this.data.addrInfo.multiArray[0][data.addr[0]];
       data.addr[1] = this.data.addrInfo.multiArray[1][data.addr[1]];
       data.addr[2] = this.data.addrInfo.multiArray[2][data.addr[2]];

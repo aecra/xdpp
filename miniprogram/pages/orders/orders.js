@@ -7,6 +7,42 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 本页面独有数据
+    display: {
+      addOrder: 'none',
+      receiveOrder: 'none',
+      announceOrder: 'none',
+    },
+    receiveSwiper: 'active',
+    announceSwiper: '',
+    swiperIndex: 0,
+    orderListHeight: 500,
+
+    // 接收订单
+    receiveList: [],
+    receiveOrderOver: false,
+    receiveListSkip: 18,
+    receiveListStep: 15,
+    outReceiveOrder: {},
+    // 发布订单
+    announceList: [],
+    announceOrderOver: false,
+    announceListSkip: 18,
+    announceListStep: 15,
+    outAnnounceOrder: {},
+
+    // 待发布订单
+    package: {
+      getPack: '中通快递',
+      pickupCode: '',
+      kind: '大',
+      pickupReceiver: '',
+      pickupNumber: '',
+      moveTo: ['竹园1号楼', '一层', '1-101'],
+      reward: '',
+      remarks: '',
+    },
+
     loginDisplay: 'none',
 
     // 宿舍地址信息
@@ -17,17 +53,6 @@ Page({
       myroom: '1-101',
       multiIndex: [0, 0, 0],
       allAddrData: [],
-    },
-
-    LoginMultiPickerColumnChange(e) {
-      app.bindMultiPickerColumnChange(e);
-      app.UpdataAddr();
-      this.DataSync();
-    },
-    LoginMultiPickerChange(e) {
-      app.bindMultiPickerChange(e);
-      app.UpdataAddr();
-      this.DataSync();
     },
 
     // 用户信息
@@ -43,6 +68,17 @@ Page({
       studentid: null,
       phone: null,
     },
+  },
+
+  DisplayChange(e) {
+    const { display } = e.currentTarget.dataset;
+    this.setData({
+      [`display.${display}`]: this.data.display[display] === 'none' ? 'flex' : 'none',
+    });
+  },
+
+  Announce(e) {
+    console.log(e);
   },
 
   LoginMultiPickerColumnChange(e) {
@@ -65,6 +101,8 @@ Page({
     app.Register(values);
   },
 
+  Capture() {},
+
   // 从 app 页面同步数据
   DataSync() {
     this.setData({
@@ -72,6 +110,8 @@ Page({
       addrInfo: app.globalData.addrInfo,
       hasUserInfo: app.globalData.hasUserInfo,
       userInfo: app.globalData.userInfo,
+      kindArray: app.globalData.kindArray,
+      packArray: app.globalData.packArray,
     });
 
     // 处理异步问题

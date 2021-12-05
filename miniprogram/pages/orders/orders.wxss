@@ -4,10 +4,110 @@ page {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  font-size: 26rpx;
+  font-size: 24rpx;
 }
 
-.login {
+.submit {
+  background-color: #fff;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 200rpx;
+  margin: auto;
+  margin-top: 100rpx;
+  margin-bottom: 50rpx;
+}
+
+.submit image {
+  width: 70%;
+  height: 70%;
+  margin-top: 15%;
+  margin-left: 15%;
+}
+
+.tab-bar {
+  width: 80%;
+  height: 120rpx;
+  background-color: #fff;
+  margin: auto;
+  border-radius: 20rpx;
+  display: flex;
+  justify-content: space-around;
+}
+
+.tab-bar view {
+  width: 200rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  box-sizing: border-box;
+  position: relative;
+  font-size: 35rpx;
+  text-align: center;
+  line-height: 80rpx;
+  transition: 500ms;
+}
+
+.tab-bar .active {
+  font-size: 45rpx;
+}
+
+.tab-bar view:after {
+  transition: 500ms;
+}
+
+.tab-bar .active:after {
+  content: "";
+  width: 100rpx;
+  height: 5rpx;
+  border-radius: 4rpx;
+  background-color: #AF2125;
+  position: absolute;
+  bottom: 0;
+  left: 50rpx;
+}
+
+.order-list swiper-item {
+  padding: 0 10%;
+  height: 900rpx;
+  box-sizing: border-box;
+}
+
+.order-list .order-item {
+  width: 100%;
+  height: 180rpx;
+  margin: 20rpx auto;
+  padding: 25rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 10rpx;
+  display: flex;
+}
+
+.order-list .order-item image {
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 65rpx;
+}
+
+.order-list .order-item .content {
+  position: relative;
+  margin-left: 25rpx;
+  margin-right: 25rpx;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.order-list .order-item .content .detials {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.login,
+.add-order,
+.receive-order,
+.announce-order {
   position: fixed;
   z-index: 1;
   left: 0;
@@ -20,7 +120,10 @@ page {
   justify-content: center;
 }
 
-.login .content {
+.login .content,
+.add-order .content,
+.receive-order .content,
+.announce-order .content {
   background-color: #fff;
   width: 80%;
   height: 65%;
@@ -30,28 +133,131 @@ page {
   box-sizing: border-box;
   position: relative;
   font-size: 28rpx;
+}
+
+.login .content .formstyle,
+.add-order .content .formstyle,
+.receive-order .content .formstyle,
+.announce-order .content .formstyle {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.login .content .title {
+.login .content .title,
+.add-order .content .title,
+.receive-order .content .title,
+.announce-order .content .title {
   font-size: 36rpx;
   text-align: center;
   padding-bottom: 50rpx;
 }
 
-.login .content .in-content {
+.login .content .in-content,
+.add-order .content .in-content,
+.receive-order .content .in-content,
+.announce-order .content .in-content {
   padding: 0 0 30rpx 0;
   flex-grow: 1;
   overflow: hidden;
 }
 
-.login .content button {
+.login .content .in-content view,
+.add-order .content .in-content view,
+.receive-order .content .in-content view,
+.announce-order .content .in-content view {
+  margin-bottom: 10rpx;
+}
+
+.login .content button,
+.add-order .content button,
+.receive-order .content button,
+.announce-order .content button {
   width: 60%;
   color: #fff;
   background-color: #AF2125;
   clear: both;
   font-size: 36rpx;
   line-height: 50rpx;
+}
+
+.announce-order .in-content image,
+.receive-order .in-content image {
+  width: 200rpx;
+  height: 200rpx;
+  margin: 20rpx 150rpx;
+  border-radius: 50rpx;
+}
+
+.pickup-code,
+.pickup-receiver,
+.pickup-number,
+.reward,
+.remarks {
+  border-radius: 5rpx;
+  border: 1rpx solid rgba(0, 0, 0, 0.226);
+  margin: 20rpx;
+  padding: 10rpx;
+}
+
+.remarks {
+  width: 460rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.get-pack,
+.moveTo {
+  text-align: center;
+  padding: 10rpx;
+  margin: 20rpx;
+}
+
+.kind-scroll {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.kind-box {
+  display: inline-block;
+}
+
+.kind-scroll .kind-group .kind-box view {
+  display: inline-block;
+  height: 48rpx;
+  min-width: 73rpx;
+  text-align: center;
+  border-radius: 15rpx;
+  padding: 5rpx;
+  margin: 8rpx 20rpx 8rpx 8rpx;
+  background-color: #e9e9e9;
+  align-content: center;
+}
+
+.sign-1,
+.sign-2,
+.sign-3,
+.sign-4 {
+  color: #fff;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #AF2125;
+  font-size: 20rpx;
+  padding: 4rpx;
+  border-radius: 5rpx;
+}
+
+.sign-2 {
+  background-color: rgb(172, 172, 172);
+}
+
+.sign-3 {
+  background-color: #B72D2D;
+}
+
+.sign-4 {
+  background-color: #B7D5EF;
 }

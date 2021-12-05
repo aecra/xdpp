@@ -1,6 +1,255 @@
-<!--pages/orders/orders.wxml-->
-<text>pages/orders/orders.wxml</text>
-
+<!-- pages/orders/orders.wxml -->
+<view class="container">
+  <view class="submit" data-display="addOrder" bindtap="DisplayChange">
+    <image src="/images/submit.png"></image>
+  </view>
+  <view class="tab-bar">
+    <view class="{{receiveSwiper}}">接单</view>
+    <view class="{{announceSwiper}}">发单</view>
+  </view>
+  <swiper class="order-list" style="height:{{orderListHeight}}rpx" bindchange="SwiperChange">
+    <swiper-item>
+      <view class="order-item" wx:for="{{receiveList}}" wx:key="item" id="{{index}}" bindtap="ReceiveOrderDetails">
+        <view>
+          <image src="../../images/{{item.package.kind}}.png"></image>
+        </view>
+        <view class="content">
+          <view>取件：{{item.package.getPack}}</view>
+          <view>
+            送件：{{item.package.moveTo[0]}} | {{item.package.moveTo[1]}} | {{item.package.moveTo[2]}}
+          </view>
+          <view class="detials">
+            <view>
+              时间：{{item.announceMonth}}-{{item.announceDay}} {{item.announceHour}}:{{item.announceMinutes}}
+            </view>
+            <view>酬劳：{{item.package.reward}}</view>
+          </view>
+          <view wx:if="{{item.deliveried != true}}" class="sign-3">已接单</view>
+          <view wx:if="{{item.deliveried == true}}" class="sign-4">已送达</view>
+        </view>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="order-item" wx:for="{{announceList}}" wx:key="item" id="{{index}}" bindtap="AnnounceOrderDetails">
+        <view>
+          <image src="../../images/{{item.package.kind}}.png"></image>
+        </view>
+        <view class="content">
+          <view>取件：{{item.package.getPack}}</view>
+          <view>
+            送件：{{item.package.moveTo[0]}} | {{item.package.moveTo[1]}} | {{item.package.moveTo[2]}}
+          </view>
+          <view class="detials">
+            <view>
+              时间：{{item.announceMonth}}-{{item.announceDay}} {{item.announceHour}}:{{item.announceMinutes}}
+            </view>
+            <view>酬劳：{{item.package.reward}}</view>
+          </view>
+          <view wx:if="{{item.canceled != true && item.receiver == null}}" class="sign-1">已发布</view>
+          <view wx:if="{{item.canceled == true}}" class="sign-2">已取消</view>
+          <view wx:if="{{item.canceled != true && item.receiver != null && item.deliveried == false}}" class="sign-3">
+            已接单
+          </view>
+          <view wx:if="{{item.canceled != true && item.receiver != null && item.deliveried == true}}" class="sign-4">
+            已送达
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+  <view class="add-order" style="display:{{display.addOrder}}" data-display="addOrder" bindtap="DisplayChange">
+    <form class="content" bindsubmit="Announce">
+      <view class="formstyle" catchtap="Capture">
+        <view class="title">发布订单</view>
+        <scroll-view class="in-content" scroll-y>
+          <scroll-view scroll-x class="kind-scroll">
+            <radio-group class="kind-group" name="kind">
+              <label class="kind-box" wx:for="{{kindArray}}" wx:key="item" id="{{index}}">
+                <radio color="#004181" value="{{item}}" checked="true" />
+                <view>{{item}}</view>
+              </label>
+            </radio-group>
+          </scroll-view>
+          <view style="font-size:20rpx;text-align:center">小：手机盒大小 | 中:鞋盒大小 | 大:更大的尺寸</view>
+          <view>
+            <picker class="get-pack" name="getPack" value="{{packIndex}}" range="{{packArray}}">
+              {{package.getPack}}
+            </picker>
+          </view>
+          <view>
+            <input class="pickup-code" name="pickupCode" placeholder="取货码"></input>
+          </view>
+          <view>
+            <input class="pickup-receiver" name="pickupReceiver" placeholder="收件人姓名" value="{{userInfo.name}}"></input>
+          </view>
+          <view>
+            <input class="pickup-number" name="pickupNumber" placeholder="收件人手机号" value="{{userInfo.phone}}"></input>
+          </view>
+          <view>
+            <picker class="moveTo" name="moveTo" mode="multiSelector" bindcolumnchange="bindMultiPickerColumnChange" value="{{addrInfo.multiIndex}}" range="{{addrInfo.multiArray}}">
+              {{package.moveTo[0]}} | {{package.moveTo[1]}} | {{package.moveTo[2]}}
+            </picker>
+          </view>
+          <view>
+            <input class="reward" name="reward" placeholder="酬劳"></input>
+          </view>
+          <view>
+            <textarea class="remarks" name="remarks" placeholder="备注"></textarea>
+          </view>
+        </scroll-view>
+        <button formType="submit">发布</button>
+      </view>
+    </form>
+  </view>
+  <view class="receive-order" style="display:{{display.receiveOrder}}" data-display="receiveOrder" bindtap="DisplayChange">
+    <form class="content">
+      <view class="formstyle" catchtap="Capture">
+        <view class="title">详细信息</view>
+        <scroll-view wx:if="{{outReceiveOrder.deliveried == true}}" class="in-content" scroll-y>
+          <image src="../../images/{{outReceiveOrder.package.kind}}.png"></image>
+          <view>取货地点：{{outReceiveOrder.package.getPack}}</view>
+          <view>
+            送达地点：{{outReceiveOrder.package.moveTo[0]}} | {{outReceiveOrder.package.moveTo[1]}} | {{outReceiveOrder.package.moveTo[2]}}
+          </view>
+          <view>
+            发布时间：{{outReceiveOrder.announceMonth}}-{{outReceiveOrder.announceDay}} {{outReceiveOrder.announceHour}}:{{outReceiveOrder.announceMinutes}}
+          </view>
+          <view>
+            接单时间：{{outReceiveOrder.receiveMonth}}-{{outReceiveOrder.receiveDay}} {{outReceiveOrder.receiveHour}}:{{outReceiveOrder.receiveMinutes}}
+          </view>
+          <view>
+            送达时间：{{outReceiveOrder.deliveriedMonth}}-{{outReceiveOrder.deliveriedDay}} {{outReceiveOrder.deliveriedHour}}:{{outReceiveOrder.deliveriedMinutes}}
+          </view>
+          <view>酬劳：{{outReceiveOrder.package.reward}}</view>
+          <view>备注：{{outReceiveOrder.package.remarks}}</view>
+        </scroll-view>
+        <scroll-view wx:if="{{outReceiveOrder.deliveried == false}}" class="in-content" scroll-y>
+          <image src="../../images/{{outReceiveOrder.package.kind}}.png"></image>
+          <view>取货地点：{{outReceiveOrder.package.getPack}}</view>
+          <view>
+            送达地点：{{outReceiveOrder.package.moveTo[0]}} | {{outReceiveOrder.package.moveTo[1]}} | {{outReceiveOrder.package.moveTo[2]}}
+          </view>
+          <view>
+            发布时间：{{outReceiveOrder.announceMonth}}-{{outReceiveOrder.announceDay}} {{outReceiveOrder.announceHour}}:{{outReceiveOrder.announceMinutes}}
+          </view>
+          <view>
+            接单时间：{{outReceiveOrder.receiveMonth}}-{{outReceiveOrder.receiveDay}} {{outReceiveOrder.receiveHour}}:{{outReceiveOrder.receiveMinutes}}
+          </view>
+          <view>酬劳：{{outReceiveOrder.package.reward}}</view>
+          <view>备注：{{outReceiveOrder.package.remarks}}</view>
+          <view style="text-align:center">-快递信息-</view>
+          <view>取货码：{{outReceiveOrder.package.pickupCode}}</view>
+          <view>收件人姓名：{{outReceiveOrder.package.pickupReceiver}}</view>
+          <view>收件人手机号：{{outReceiveOrder.package.pickupNumber}}</view>
+          <view style="text-align:center">-发布者信息-</view>
+          <view>姓名：{{outReceiveOrder.announcerName}}</view>
+          <view>手机号：{{outReceiveOrder.announcerPhone}}</view>
+          <view>QQ号：{{outReceiveOrder.announcerQq}}</view>
+        </scroll-view>
+        <button data-display="receiveOrder" bindtap="DisplayChange">确定</button>
+      </view>
+    </form>
+  </view>
+  <view class="announce-order" style="display:{{display.announceOrder}}" data-display="announceOrder" bindtap="DisplayChange">
+    <form class="content" bindsubmit="UpdateOrder">
+      <view class="formstyle" catchtap="Capture">
+        <view class="title">详细信息</view>
+        <scroll-view wx:if="{{outAnnounceOrder.canceled == true}}" class="in-content" scroll-y>
+          <image src="../../images/{{outAnnounceOrder.package.kind}}.png"></image>
+          <view>取货地点：{{outAnnounceOrder.package.getPack}}</view>
+          <view>
+            送达地点：{{outAnnounceOrder.package.moveTo[0]}} | {{outAnnounceOrder.package.moveTo[1]}} | {{outAnnounceOrder.package.moveTo[2]}}
+          </view>
+          <view>
+            发布时间：{{outAnnounceOrder.announceMonth}}-{{outAnnounceOrder.announceDay}} {{outAnnounceOrder.announceHour}}:{{outAnnounceOrder.announceMinutes}}
+          </view>
+          <view>
+            取消时间：{{outAnnounceOrder.canceledMonth}}-{{outAnnounceOrder.canceledDay}} {{outAnnounceOrder.canceledHour}}:{{outAnnounceOrder.canceledMinutes}}
+          </view>
+          <view>酬劳：{{outAnnounceOrder.package.reward}}</view>
+          <view>备注：{{outAnnounceOrder.package.remarks}}</view>
+          <view style="text-align:center">-快递信息-</view>
+          <view>取货码：{{outAnnounceOrder.package.pickupCode}}</view>
+          <view>收件人姓名：{{outAnnounceOrder.package.pickupReceiver}}</view>
+          <view>收件人手机号：{{outAnnounceOrder.package.pickupNumber}}</view>
+        </scroll-view>
+        <scroll-view wx:if="{{outAnnounceOrder.canceled != true && outAnnounceOrder.receiver == null}}" class="in-content" scroll-y>
+          <image src="../../images/{{outAnnounceOrder.package.kind}}.png"></image>
+          <view>取货地点：{{outAnnounceOrder.package.getPack}}</view>
+          <view>
+            送达地点：{{outAnnounceOrder.package.moveTo[0]}} | {{outAnnounceOrder.package.moveTo[1]}} | {{outAnnounceOrder.package.moveTo[2]}}
+          </view>
+          <view>
+            发布时间：{{outAnnounceOrder.announceMonth}}-{{outAnnounceOrder.announceDay}} {{outAnnounceOrder.announceHour}}:{{outAnnounceOrder.announceMinutes}}
+          </view>
+          <view>酬劳：{{outAnnounceOrder.package.reward}}</view>
+          <view>备注：{{outAnnounceOrder.package.remarks}}</view>
+          <view style="text-align:center">-快递信息-</view>
+          <view>取货码：{{outAnnounceOrder.package.pickupCode}}</view>
+          <view>收件人姓名：{{outAnnounceOrder.package.pickupReceiver}}</view>
+          <view>收件人手机号：{{outAnnounceOrder.package.pickupNumber}}</view>
+        </scroll-view>
+        <scroll-view wx:if="{{outAnnounceOrder.canceled != true && outAnnounceOrder.receiver != null && outAnnounceOrder.deliveried == false}}" class="in-content" scroll-y>
+          <image src="../../images/{{outAnnounceOrder.package.kind}}.png"></image>
+          <view>取货地点：{{outAnnounceOrder.package.getPack}}</view>
+          <view>
+            送达地点：{{outAnnounceOrder.package.moveTo[0]}} | {{outAnnounceOrder.package.moveTo[1]}} | {{outAnnounceOrder.package.moveTo[2]}}
+          </view>
+          <view>
+            发布时间：{{outAnnounceOrder.announceMonth}}-{{outAnnounceOrder.announceDay}} {{outAnnounceOrder.announceHour}}:{{outAnnounceOrder.announceMinutes}}
+          </view>
+          <view>
+            接单时间：{{outAnnounceOrder.receiveMonth}}-{{outAnnounceOrder.receiveDay}} {{outAnnounceOrder.receiveHour}}:{{outAnnounceOrder.receiveMinutes}}
+          </view>
+          <view>酬劳：{{outAnnounceOrder.package.reward}}</view>
+          <view>备注：{{outAnnounceOrder.package.remarks}}</view>
+          <view style="text-align:center">-快递信息-</view>
+          <view>取货码：{{outAnnounceOrder.package.pickupCode}}</view>
+          <view>收件人姓名：{{outAnnounceOrder.package.pickupReceiver}}</view>
+          <view>收件人手机号：{{outAnnounceOrder.package.pickupNumber}}</view>
+          <view style="text-align:center">-接单人信息-</view>
+          <view>接单人姓名：{{outAnnounceOrder.receiverName}}</view>
+          <view>接单人手机号：{{outAnnounceOrder.receiverPhone}}</view>
+          <view>接单人QQ号：{{outAnnounceOrder.receiverQq}}</view>
+        </scroll-view>
+        <scroll-view wx:if="{{outAnnounceOrder.canceled != true && outAnnounceOrder.receiver != null && outAnnounceOrder.deliveried == true}}" class="in-content" scroll-y>
+          <image src="../../images/{{outAnnounceOrder.package.kind}}.png"></image>
+          <view>取货地点：{{outAnnounceOrder.package.getPack}}</view>
+          <view>
+            送达地点：{{outAnnounceOrder.package.moveTo[0]}} | {{outAnnounceOrder.package.moveTo[1]}} | {{outAnnounceOrder.package.moveTo[2]}}
+          </view>
+          <view>
+            发布时间：{{outAnnounceOrder.announceMonth}}-{{outAnnounceOrder.announceDay}} {{outAnnounceOrder.announceHour}}:{{outAnnounceOrder.announceMinutes}}
+          </view>
+          <view>
+            接单时间：{{outAnnounceOrder.receiveMonth}}-{{outAnnounceOrder.receiveDay}} {{outAnnounceOrder.receiveHour}}:{{outAnnounceOrder.receiveMinutes}}
+          </view>
+          <view>
+            送达时间：{{outAnnounceOrder.deliveriedMonth}}-{{outAnnounceOrder.deliveriedDay}} {{outAnnounceOrder.deliveriedHour}}:{{outAnnounceOrder.deliveriedMinutes}}
+          </view>
+          <view>酬劳：{{outAnnounceOrder.package.reward}}</view>
+          <view>备注：{{outAnnounceOrder.package.remarks}}</view>
+          <view style="text-align:center">-快递信息-</view>
+          <view>取货码：{{outAnnounceOrder.package.pickupCode}}</view>
+          <view>收件人姓名：{{outAnnounceOrder.package.pickupReceiver}}</view>
+          <view>收件人手机号：{{outAnnounceOrder.package.pickupNumber}}</view>
+        </scroll-view>
+        <button wx:if="{{outAnnounceOrder.canceled == true}}" data-display="announceOrder" bindtap="DisplayChange">
+          确定
+        </button>
+        <button wx:if="{{outAnnounceOrder.canceled != true && outAnnounceOrder.receiver == null}}" name="kind" value="cancel" formType="submit">
+          取消订单
+        </button>
+        <button wx:if="{{outAnnounceOrder.canceled != true && outAnnounceOrder.receiver != null && outAnnounceOrder.deliveried == false}}" name="kind" value="confirm" formType="submit">
+          确认送达
+        </button>
+        <button wx:if="{{outAnnounceOrder.canceled != true && outAnnounceOrder.receiver != null && outAnnounceOrder.deliveried == true}}" data-display="announceOrder" bindtap="DisplayChange">
+          确定
+        </button>
+      </view>
+    </form>
+  </view>
+</view>
 <view class="login" style="display:{{loginDisplay}}">
   <form class="content" bindsubmit="Register">
     <view class="title">注册</view>
