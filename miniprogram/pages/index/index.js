@@ -52,10 +52,20 @@ Page({
 
   // 从 app 页面同步数据
   DataSync() {
-    this.setData({
-      loginDisplay: app.globalData.loginDisplay,
-      addrInfo: app.globalData.addrInfo,
-      userInfo: app.globalData.userInfo,
+    wx.event.on('loginDisplay', (data) => {
+      this.setData({
+        loginDisplay: data,
+      });
+    });
+    wx.event.on('addrInfo', (data) => {
+      this.setData({
+        addrInfo: data,
+      });
+    });
+    wx.event.on('userInfo', (data) => {
+      this.setData({
+        userInfo: data,
+      });
     });
   },
 
