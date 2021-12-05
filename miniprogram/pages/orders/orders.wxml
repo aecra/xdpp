@@ -72,8 +72,8 @@
           </scroll-view>
           <view style="font-size:20rpx;text-align:center">小：手机盒大小 | 中:鞋盒大小 | 大:更大的尺寸</view>
           <view>
-            <picker class="get-pack" name="getPack" value="{{packIndex}}" range="{{packArray}}">
-              {{package.getPack}}
+            <picker class="get-pack" name="getPack" model:value="{{packIndex}}" range="{{packArray}}">
+              {{packArray[packIndex]}}
             </picker>
           </view>
           <view>
@@ -86,7 +86,7 @@
             <input class="pickup-number" name="pickupNumber" placeholder="收件人手机号" value="{{userInfo.phone}}"></input>
           </view>
           <view>
-            <picker class="moveTo" name="moveTo" mode="multiSelector" bindcolumnchange="bindMultiPickerColumnChange" value="{{addrInfo.multiIndex}}" range="{{addrInfo.multiArray}}">
+            <picker class="moveTo" name="moveTo" mode="multiSelector"  bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{addrInfo.multiIndex}}" range="{{addrInfo.multiArray}}">
               {{package.moveTo[0]}} | {{package.moveTo[1]}} | {{package.moveTo[2]}}
             </picker>
           </view>
