@@ -69,7 +69,7 @@ Page({
   },
 
   DisplayChange(e) {
-    const { display } = e.currentTarget.dataset;
+    const display = e.display || e.currentTarget.dataset.display;
     this.setData({
       [`display.${display}`]: this.data.display[display] === 'none' ? 'flex' : 'none',
     });
@@ -100,7 +100,10 @@ Page({
     });
     result = result.result;
     if (result.error === null) {
-      this.LoadInfo();
+      wx.showToast({
+        title: '发布成功',
+      });
+      this.DisplayChange({ display: 'addOrder' });
     } else {
       wx.showToast({
         title: result.error,
