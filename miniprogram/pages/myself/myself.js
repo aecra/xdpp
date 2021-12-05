@@ -47,7 +47,6 @@ Page({
     },
 
     // 用户信息
-    hasUserInfo: false,
     userInfo: {
       _id: '',
       _openid: '',
@@ -70,13 +69,11 @@ Page({
   LoginMultiPickerColumnChange(e) {
     app.bindMultiPickerColumnChange(e);
     app.UpdataAddr();
-    this.DataSync();
   },
 
   LoginMultiPickerChange(e) {
     app.bindMultiPickerChange(e);
     app.UpdataAddr();
-    this.DataSync();
   },
 
   Register(e) {
@@ -90,13 +87,11 @@ Page({
   LocalMultiPickerColumnChange(e) {
     app.bindMultiPickerColumnChange(e);
     app.UpdataAddr();
-    this.DataSync();
   },
 
   LocalMultiPickerChange(e) {
     app.bindMultiPickerChange(e);
     app.UpdataAddr();
-    this.DataSync();
   },
 
   UpdateDisplay(e) {
@@ -131,9 +126,6 @@ Page({
       });
       this.ChangeUpdateDisplay();
       app.LoadInfo();
-      setTimeout(() => {
-        this.DataSync();
-      }, 500);
     } else {
       wx.showToast({
         title: result.error,
@@ -146,17 +138,21 @@ Page({
 
   // 从 app 页面同步数据
   DataSync() {
-    this.setData({
-      loginDisplay: app.globalData.loginDisplay,
-      addrInfo: app.globalData.addrInfo,
-      hasUserInfo: app.globalData.hasUserInfo,
-      userInfo: app.globalData.userInfo,
+    wx.event.on('userInfo', (data) => {
+      this.setData({
+        userInfo: data,
+      });
     });
-
-    // 处理异步问题
-    if (this.data.userInfo.openid === '') {
-      setTimeout(this.DataSync, 200);
-    }
+    wx.event.on('addrInfo', (data) => {
+      this.setData({
+        addrInfo: data,
+      });
+    });
+    wx.event.on('loginDisplay', (data) => {
+      this.setData({
+        loginDisplay: data,
+      });
+    });
   },
 
   /**

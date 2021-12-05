@@ -1,4 +1,7 @@
 // app.js
+import Event from './utils/event';
+// 挂载到wx的实例上
+wx.event = new Event();
 App({
   globalData: {
     loginDisplay: 'none',
@@ -20,7 +23,6 @@ App({
     },
 
     // 用户信息
-    hasUserInfo: false,
     userInfo: {
       _id: '',
       _openid: '',
@@ -52,6 +54,7 @@ App({
     for (let i = 0; i < floors[addrInfo.multiIndex[1]].rooms.length; i += 1) {
       addrInfo.multiArray[2][i] = floors[addrInfo.multiIndex[1]].rooms[i].room;
     }
+    wx.event.emit('addrInfo', this.globalData.addrInfo);
   },
 
   async PackInit() {
@@ -62,6 +65,7 @@ App({
     for (let i = 0; i < resAddr.data.length; i += 1) {
       this.globalData.packArray[i] = resAddr.data[i].addr;
     }
+    wx.event.emit('packArray', this.globalData.packArray);
   },
 
   async KindInit() {
@@ -72,6 +76,7 @@ App({
     for (let i = 0; i < reskinds.data.length; i += 1) {
       this.globalData.kindArray[i] = reskinds.data[i].kind;
     }
+    wx.event.emit('kindArray', this.globalData.kindArray);
   },
 
   bindMultiPickerColumnChange(e) {
@@ -111,6 +116,7 @@ App({
       default:
         break;
     }
+    wx.event.emit('addrInfo', this.globalData.addrInfo);
   },
   bindMultiPickerChange(e) {
     const { addrInfo } = this.globalData;
@@ -118,11 +124,13 @@ App({
     addrInfo.mybuilding = addrInfo.multiArray[0][addrInfo.multiIndex[0]];
     addrInfo.myfloor = addrInfo.multiArray[1][addrInfo.multiIndex[1]];
     addrInfo.myroom = addrInfo.multiArray[2][addrInfo.multiIndex[2]];
+    wx.event.emit('addrInfo', this.globalData.addrInfo);
   },
   UpdataAddr() {
     this.globalData.userInfo.addr[0] = this.globalData.addrInfo.mybuilding;
     this.globalData.userInfo.addr[1] = this.globalData.addrInfo.myfloor;
     this.globalData.userInfo.addr[2] = this.globalData.addrInfo.myroom;
+    wx.event.emit('userInfo', this.globalData.userInfo);
   },
 
   async Register(data) {
@@ -148,12 +156,13 @@ App({
     result = result.result;
 
     if (result.hasUserInfo) {
-      this.globalData.hasUserInfo = true;
       this.globalData.userInfo = result.userInfo;
       this.globalData.loginDisplay = 'none';
+      wx.event.emit('userInfo', result.userInfo);
     } else {
       this.globalData.loginDisplay = 'flex';
     }
+    wx.event.emit('loginDisolay', this.globalData.loginDisplay);
   },
 
   onLaunch() {

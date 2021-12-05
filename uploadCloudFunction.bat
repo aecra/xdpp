@@ -1,1 +1,1 @@
-"C:\Program Files (x86)\Tencent\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-9g3jxgcr2ffa5389 --n quickstartFunctions --r --project "G:\workspace\微信小程序\xiandian-errand" --report_first --report
+"C:\Program Files (x86)\Tencent\寰俊web寮�鍙戣�呭伐鍏穃cli.bat" cloud functions deploy --e cloud1-9g3jxgcr2ffa5389 --n packageaddr --r --project "G:\workspace\寰俊灏忕▼搴廫xiandian-errand" --report_first --report

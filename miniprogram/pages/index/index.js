@@ -20,7 +20,6 @@ Page({
     },
 
     // 用户信息
-    hasUserInfo: false,
     userInfo: {
       _id: '',
       _openid: '',
@@ -37,12 +36,10 @@ Page({
   LoginMultiPickerColumnChange(e) {
     app.bindMultiPickerColumnChange(e);
     app.UpdataAddr();
-    this.DataSync();
   },
   LoginMultiPickerChange(e) {
     app.bindMultiPickerChange(e);
     app.UpdataAddr();
-    this.DataSync();
   },
 
   Register(e) {
@@ -58,14 +55,8 @@ Page({
     this.setData({
       loginDisplay: app.globalData.loginDisplay,
       addrInfo: app.globalData.addrInfo,
-      hasUserInfo: app.globalData.hasUserInfo,
       userInfo: app.globalData.userInfo,
     });
-
-    // 处理异步问题
-    if (this.data.userInfo.openid === '') {
-      setTimeout(this.DataSync, 200);
-    }
   },
 
   /**
