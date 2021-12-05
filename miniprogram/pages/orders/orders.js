@@ -33,17 +33,16 @@ Page({
 
     // 待发布订单
     package: {
-      getPack: '中通快递',
-      pickupCode: '',
-      kind: '大',
-      pickupReceiver: '',
-      pickupNumber: '',
       moveTo: ['竹园1号楼', '一层', '1-101'],
-      reward: '',
-      remarks: '',
     },
 
     loginDisplay: 'none',
+
+    // 快递种类
+    kindArray: [],
+    // 快递地点
+    packIndex: 0,
+    packArray: [],
 
     // 宿舍地址信息
     addrInfo: {
@@ -77,8 +76,27 @@ Page({
     });
   },
 
+  bindMultiPickerColumnChange(e) {
+    app.bindMultiPickerColumnChange(e);
+    this.DataSync();
+  },
+  bindMultiPickerChange(e) {
+    app.bindMultiPickerChange(e);
+    this.DataSync();
+    this.data.package.moveTo[0] = this.data.addrInfo.mybuilding;
+    this.data.package.moveTo[1] = this.data.addrInfo.myfloor;
+    this.data.package.moveTo[2] = this.data.addrInfo.myroom;
+    this.setData({
+      package: this.data.package,
+    });
+  },
+
   Announce(e) {
-    console.log(e);
+    const data = e.detail.value;
+    data.getPack = this.data.packArray[data.getPack];
+    data.moveTo[0] = this.data.addrInfo.mybuilding;
+    data.moveTo[1] = this.data.addrInfo.myfloor;
+    data.moveTo[2] = this.data.addrInfo.myroom;
   },
 
   LoginMultiPickerColumnChange(e) {
