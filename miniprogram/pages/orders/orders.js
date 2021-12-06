@@ -112,6 +112,30 @@ Page({
     }
   },
 
+  UpdataorderListHeight() {
+    let height = 0;
+    if (this.data.swiperIndex === 0) {
+      height = this.data.receiveList.length * 200 + 20;
+    } else {
+      height = this.data.announceList.length * 200 + 20;
+    }
+    if (height < 800) {
+      height = 800;
+    }
+    this.setData({
+      orderListHeight: height,
+    });
+  },
+  SwiperChange() {
+    this.data.swiperIndex = (this.data.swiperIndex === 0) ? 1 : 0;
+    const middleVar = this.data.receiveSwiper;
+    this.setData({
+      receiveSwiper: this.data.announceSwiper,
+      announceSwiper: middleVar,
+    });
+    this.UpdataorderListHeight();
+  },
+
   LoginMultiPickerColumnChange(e) {
     app.bindMultiPickerColumnChange(e);
     app.UpdataAddr();
