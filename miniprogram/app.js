@@ -55,6 +55,7 @@ App({
       addrInfo.multiArray[2][i] = floors[addrInfo.multiIndex[1]].rooms[i].room;
     }
     wx.event.emit('addrInfo', this.globalData.addrInfo);
+    wx.event.emit('searchAddrInfo', this.globalData.addrInfo);
   },
 
   async PackInit() {

@@ -171,7 +171,7 @@ Page({
   },
 
   SearchDataSync() {
-    wx.event.on('addrInfo', (data) => {
+    wx.event.on('searchAddrInfo', (data) => {
       this.setData({
         'searchAim.buildings': data.multiArray['0'],
         'searchAim.floors': data.multiArray['1'],
