@@ -240,7 +240,7 @@
         <button wx:if="{{outAnnounceOrder.canceled != true && outAnnounceOrder.receiver == null}}" data-kind="cancel" formType="submit">
           取消订单
         </button>
-        <button wx:if="{{outAnnounceOrder.canceled != true && outAnnounceOrder.receiver != null && outAnnounceOrder.deliveried == false}}" name="kind" value="confirm" formType="submit">
+        <button wx:if="{{outAnnounceOrder.canceled != true && outAnnounceOrder.receiver != null && outAnnounceOrder.deliveried == false}}" data-kind="confirm" formType="submit">
           确认送达
         </button>
         <button wx:if="{{outAnnounceOrder.canceled != true && outAnnounceOrder.receiver != null && outAnnounceOrder.deliveried == true}}" data-display="announceOrder" bindtap="DisplayChange">
