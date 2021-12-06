@@ -19,7 +19,7 @@ exports.main = async (event) => {
     error = '请输入酬劳';
   }
 
-  if (error !== null) {
+  if (error == null) {
     const wxContext = cloud.getWXContext();
     const db = cloud.database();
     await db.collection('orderlist').add({
