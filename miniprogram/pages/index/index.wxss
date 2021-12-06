@@ -13,7 +13,119 @@ page {
   height: 300rpx;
 }
 
-.login {
+.search {
+  display: flex;
+  width: 80%;
+  height: 100rpx;
+  background-color: #ffffff;
+  margin: auto;
+  margin-top: -50rpx;
+  border-radius: 20rpx;
+}
+
+.search button {
+  flex-grow: 1;
+  display: flex;
+  height: 100%;
+  padding: 20rpx 30rpx;
+}
+
+.search image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.search text {
+  flex-grow: 1;
+  color: #999;
+  font-size: 30rpx;
+  line-height: 60rpx;
+}
+
+.order-data {
+  width: 85%;
+  height: 200rpx;
+  background-color: #fff;
+  margin: auto;
+  margin-top: 30rpx;
+  border-radius: 10rpx;
+}
+
+.order-data .head-title {
+  padding-top: 25rpx;
+  margin-left: 20rpx;
+  font-weight: bold;
+  font-size: 28rpx;
+}
+
+.order-data .data-area {
+  display: flex;
+  padding-top: 30rpx;
+}
+
+.order-data .data-area .data-card {
+  width: 150rpx;
+  text-align: center;
+}
+
+.order-data .data-area .data-card .data-number {
+  height: 50rpx;
+  vertical-align: middle;
+  font-size: 36rpx;
+}
+
+.sign-1 {
+  color: #004181;
+}
+
+.sign-2 {
+  color: rgb(172, 172, 172);
+}
+
+.sign-3 {
+  color: #B72D2D;
+}
+
+.sign-4 {
+  color: #B7D5EF;
+}
+
+.order-item {
+  width: 85%;
+  height: 180rpx;
+  margin: 20rpx auto;
+  padding: 25rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 10rpx;
+  display: flex;
+}
+
+.order-item image {
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 65rpx;
+}
+
+.order-item .content {
+  position: relative;
+  margin-left: 25rpx;
+  margin-right: 25rpx;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.order-item .content .detials {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-details,
+.login,
+.search-method {
   position: fixed;
   z-index: 1;
   left: 0;
@@ -26,7 +138,9 @@ page {
   justify-content: center;
 }
 
-.login .content {
+.order-details .content,
+.login .content,
+.search-method .content {
   background-color: #fff;
   width: 80%;
   height: 65%;
@@ -41,23 +155,54 @@ page {
   justify-content: space-between;
 }
 
-.login .content .title {
+.order-details .content .title,
+.login .content .title,
+.search-method .content .title {
   font-size: 36rpx;
   text-align: center;
   padding-bottom: 50rpx;
 }
 
-.login .content .in-content {
+.order-details .content .in-content,
+.login .content .in-content,
+.search-method .content .in-content {
   padding: 0 0 30rpx 0;
   flex-grow: 1;
   overflow: hidden;
 }
 
-.login .content button {
+.order-details .content .in-content view {
+  margin-bottom: 20rpx;
+}
+
+.order-details .in-content image {
+  width: 200rpx;
+  height: 200rpx;
+  margin: 20rpx 150rpx;
+  border-radius: 50rpx;
+}
+
+.order-details .content button,
+.login .content button,
+.search-method .content button {
   width: 60%;
   color: #fff;
   background-color: #AF2125;
   clear: both;
   font-size: 36rpx;
   line-height: 50rpx;
+}
+
+.search-checkbox {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.search-checkbox label {
+  width: 50%;
+  padding: 10rpx 0;
+}
+
+.search-checkbox label view {
+  display: inline-block;
 }

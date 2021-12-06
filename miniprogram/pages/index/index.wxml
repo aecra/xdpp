@@ -10,6 +10,103 @@
       </swiper-item>
     </swiper>
   </view>
+
+  <view class="search">
+    <button data-display="searchMethod" bindtap="DisplayChange">
+      <image src="/images/search.png"></image>
+      <text>选择你希望的快递条件</text>
+    </button>
+  </view>
+
+  <view class="order-data">
+    <view class="head-title">订单数据</view>
+    <view class="data-area">
+      <view class="data-card">
+        <view class="data-number sin-1">{{orderData.announce}}</view>
+        <view class="data-name">已发布</view>
+      </view>
+      <view class="data-card">
+        <view class="data-number sign-2">{{orderData.canceled}}</view>
+        <view class="data-name">已取消</view>
+      </view>
+      <view class="data-card">
+        <view class="data-number sign-3">{{orderData.received}}</view>
+        <view class="data-name">已接单</view>
+      </view>
+      <view class="data-card">
+        <view class="data-number sign-4">{{orderData.deliveried}}</view>
+        <view class="data-name">已送达</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="order-list">
+    <view wx:for="{{orderList}}" wx:key="item" class="order-item" bindtap="OrderDetails" id="{{index}}">
+      <view>
+        <image src="../../images/{{item.package.kind}}.png"></image>
+      </view>
+      <view class="content">
+        <view>取件：{{item.package.getPack}}</view>
+        <view>送件：{{item.package.moveTo[0]}} | {{item.package.moveTo[1]}} | {{item.package.moveTo[2]}}</view>
+        <view class="detials">
+          <view>时间：{{item.month}}-{{item.day}} {{item.hour}}:{{item.minutes}}</view>
+          <view>酬劳：{{item.package.reward}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="order-details" style="display:{{display.orderDetails}}" data-display="orderDetails" bindtap="DisplayChange">
+    <view class="content" catchtap="Capture">
+      <view class="title">订单详情</view>
+      <scroll-view class="in-content" scroll-y>
+        <image  src="../../images/{{outOrder.package.kind}}.png"></image>
+        <view>取货地点：{{outOrder.package.getPack}}</view>
+        <view>送达地点：{{outOrder.package.moveTo[0]}} | {{outOrder.package.moveTo[1]}} | {{outOrder.package.moveTo[2]}}</view>
+        <view>发布时间：{{outOrder.month}}-{{outOrder.day}} {{outOrder.hour}}:{{outOrder.minutes}}</view>
+        <view>酬劳：{{outOrder.package.reward}}</view>
+        <view>备注：{{outOrder.package.remarks}}</view>
+      </scroll-view>
+      <button bindtap="Receive">接单</button>
+    </view>
+  </view>
+
+  <view class="search-method" style="display:{{display.searchMethod}}" data-display="searchMethod" bindtap="DisplayChange">
+    <view class="content" catchtap="Capture">
+      <view class="title">快递查询</view>
+        <scroll-view class="in-content" scroll-y>
+          <view style="text-align:center">-宿舍楼-</view>
+              <checkbox-group class="search-checkbox" data-kind="buildings" bindchange="ChangeSearch">
+                <label wx:for="{{searchData.buildings}}" wx:key="item">
+                  <checkbox color="#AF2125" checked id="{{index}}" value="{{item}}"></checkbox>
+                  <view>{{item}}</view>
+                </label>
+              </checkbox-group>
+            <view style="text-align:center">-楼层-</view>
+              <checkbox-group class="search-checkbox" data-kind="floors" bindchange="ChangeSearch">
+                <label wx:for="{{searchData.floors}}" wx:key="item">
+                  <checkbox color="#AF2125" checked id="{{index}}" value="{{item}}"></checkbox>
+                  <view>{{item}}</view>
+                </label>
+              </checkbox-group>
+            <view style="text-align:center">-快递种类-</view>
+              <checkbox-group class="search-checkbox" data-kind="kinds" bindchange="ChangeSearch">
+                <label wx:for="{{searchData.kinds}}" wx:key="item">
+                  <checkbox color="#AF2125" checked id="{{index}}" value="{{item}}"></checkbox>
+                  <view>{{item}}</view>
+                </label>
+              </checkbox-group>
+            <view style="text-align:center">-取件地址-</view>
+              <checkbox-group class="search-checkbox" data-kind="packageaddr" bindchange="ChangeSearch">
+                <label wx:for="{{searchData.packageaddr}}" wx:key="item">
+                  <checkbox color="#AF2125" checked id="{{index}}" value="{{item}}"></checkbox>
+                  <view>{{item}}</view>
+                </label>
+              </checkbox-group>
+      </scroll-view>
+      <button bindtap="Search">查询</button>
+    </view>
+  </view>
 </view>
 
 <view class="login" style="display:{{loginDisplay}}">
