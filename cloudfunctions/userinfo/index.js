@@ -4,7 +4,7 @@ const cloud = require('wx-server-sdk');
 cloud.init();
 
 // 云函数入口函数
-exports.main = async () => {
+exports.main = async (event) => {
   const wxContext = cloud.getWXContext();
 
   const db = cloud.database();
@@ -12,7 +12,7 @@ exports.main = async () => {
   const userList = await db
     .collection('userlist')
     .where({
-      openid: wxContext.OPENID,
+      openid: event.OPENID || wxContext.OPENID,
     })
     .get({});
 
