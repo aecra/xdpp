@@ -20,13 +20,11 @@ Page({
 
     // 接收订单
     receiveList: [],
-    receiveOrderOver: false,
     receiveListSkip: 18,
     receiveListStep: 15,
     outReceiveOrder: {},
     // 发布订单
     announceList: [],
-    announceOrderOver: false,
     announceListSkip: 18,
     announceListStep: 15,
     outAnnounceOrder: {},
@@ -136,6 +134,50 @@ Page({
     this.UpdataorderListHeight();
   },
 
+  async ReceiveListInit() {
+    const result = await wx.cloud.callFunction({
+      name: 'receivelist',
+      data: {
+        start: this.data.receiveListSkip,
+        limit: this.data.receiveListStep,
+      },
+    });
+    const { orderlist } = result.result;
+    this.data.receiveListSkip += orderlist.length;
+    if (orderlist.length === 0) {
+      wx.showToast({
+        title: '无更多订单',
+        icon: 'none',
+      });
+    }
+    this.setData({
+      receiveList: this.data.receiveList.concat(orderlist),
+    });
+    this.UpdataorderListHeight();
+  },
+
+  async AnnounceList() {
+    const result = await wx.cloud.callFunction({
+      name: 'announcelist',
+      data: {
+        start: this.data.announceListSkip,
+        limit: this.data.announceListStep,
+      },
+    });
+    const { orderlist } = result.result;
+    this.data.announceListSkip += orderlist.length;
+    if (orderlist.length === 0) {
+      wx.showToast({
+        title: '无更多订单',
+        icon: 'none',
+      });
+    }
+    this.setData({
+      announceList: this.data.announceList.concat(orderlist),
+    });
+    this.UpdataorderListHeight();
+  },
+
   LoginMultiPickerColumnChange(e) {
     app.bindMultiPickerColumnChange(e);
     app.UpdataAddr();
@@ -190,6 +232,8 @@ Page({
    */
   onLoad() {
     this.DataSync();
+    this.ReceiveListInit();
+    this.AnnounceList();
   },
 
   /**
