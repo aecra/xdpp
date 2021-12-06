@@ -226,6 +226,30 @@ Page({
     this.DisplayChange({ display: 'announceOrder' });
   },
 
+  async UpdateOrder(e) {
+    let result = await wx.cloud.callFunction({
+      name: 'updateorder',
+      data: {
+        kind: e.detail.target.dataset.kind,
+        // eslint-disable-next-line no-underscore-dangle
+        _id: this.data.outAnnounceOrder._id,
+      },
+    });
+    result = result.result;
+
+    if (result.error === null) {
+      wx.showToast({
+        title: '操作成功',
+      });
+      this.DisplayChange({ display: 'announceOrder' });
+    } else {
+      wx.showToast({
+        title: result.error,
+        icon: 'none',
+      });
+    }
+  },
+
   LoginMultiPickerColumnChange(e) {
     app.bindMultiPickerColumnChange(e);
     app.UpdataAddr();

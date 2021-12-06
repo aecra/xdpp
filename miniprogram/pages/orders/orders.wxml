@@ -237,7 +237,7 @@
         <button wx:if="{{outAnnounceOrder.canceled == true}}" data-display="announceOrder" bindtap="DisplayChange">
           确定
         </button>
-        <button wx:if="{{outAnnounceOrder.canceled != true && outAnnounceOrder.receiver == null}}" name="kind" value="cancel" formType="submit">
+        <button wx:if="{{outAnnounceOrder.canceled != true && outAnnounceOrder.receiver == null}}" data-kind="cancel" formType="submit">
           取消订单
         </button>
         <button wx:if="{{outAnnounceOrder.canceled != true && outAnnounceOrder.receiver != null && outAnnounceOrder.deliveried == false}}" name="kind" value="confirm" formType="submit">
