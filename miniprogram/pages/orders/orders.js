@@ -336,7 +336,13 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {},
+  onReachBottom() {
+    if (this.data.receiveSwiper === 'active') {
+      this.ReceiveList();
+    } else {
+      this.AnnounceList();
+    }
+  },
 
   /**
    * 用户点击右上角分享
