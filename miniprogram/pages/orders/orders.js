@@ -20,13 +20,13 @@ Page({
 
     // 接收订单
     receiveList: [],
-    receiveListSkip: 18,
-    receiveListStep: 15,
+    receiveListSkip: 0,
+    receiveListStep: 10,
     outReceiveOrder: {},
     // 发布订单
     announceList: [],
-    announceListSkip: 18,
-    announceListStep: 15,
+    announceListSkip: 0,
+    announceListStep: 10,
     outAnnounceOrder: {},
 
     // 待发布订单
@@ -134,7 +134,7 @@ Page({
     this.UpdataorderListHeight();
   },
 
-  async ReceiveListInit() {
+  async ReceiveList() {
     const result = await wx.cloud.callFunction({
       name: 'receivelist',
       data: {
@@ -176,6 +176,54 @@ Page({
       announceList: this.data.announceList.concat(orderlist),
     });
     this.UpdataorderListHeight();
+  },
+
+  async UpdateOutReceiveOrder(e) {
+    const { id } = e.currentTarget;
+    this.data.outReceiveOrder = this.data.receiveList[id];
+    if (!this.data.outReceiveOrder.deliveried) {
+      let result = await wx.cloud.callFunction({
+        name: 'userinfo',
+        data: {
+          OPENID: this.data.outReceiveOrder.announcer,
+        },
+      });
+      result = result.result;
+      if (result.hasUserInfo) {
+        this.data.outReceiveOrder.announcerName = result.userInfo.name;
+        this.data.outReceiveOrder.announcerPhone = result.userInfo.phone;
+        this.data.outReceiveOrder.announcerQq = result.userInfo.qq;
+      }
+    }
+    this.setData({
+      outReceiveOrder: this.data.outReceiveOrder,
+    });
+    this.DisplayChange({ display: 'receiveOrder' });
+  },
+
+  // 发布订单列表处理
+  async UpdateOutAnnounceOrder(e) {
+    const { id } = e.currentTarget;
+    this.data.outAnnounceOrder = this.data.announceList[id];
+    const order = this.data.outAnnounceOrder;
+    if (!order.canceled && order.receiver && !order.deliveried) {
+      let result = await wx.cloud.callFunction({
+        name: 'userinfo',
+        data: {
+          OPENID: this.data.outAnnounceOrder.receiver,
+        },
+      });
+      result = result.result;
+      if (result.hasUserInfo) {
+        this.data.outAnnounceOrder.receiverName = result.userInfo.name;
+        this.data.outAnnounceOrder.receiverPhone = result.userInfo.phone;
+        this.data.outAnnounceOrder.receiverQq = result.userInfo.qq;
+      }
+    }
+    this.setData({
+      outAnnounceOrder: this.data.announceList[id],
+    });
+    this.DisplayChange({ display: 'announceOrder' });
   },
 
   LoginMultiPickerColumnChange(e) {
@@ -232,7 +280,7 @@ Page({
    */
   onLoad() {
     this.DataSync();
-    this.ReceiveListInit();
+    this.ReceiveList();
     this.AnnounceList();
   },
 

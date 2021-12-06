@@ -9,7 +9,7 @@
   </view>
   <swiper class="order-list" style="height:{{orderListHeight}}rpx" bindchange="SwiperChange">
     <swiper-item>
-      <view class="order-item" wx:for="{{receiveList}}" wx:key="item" id="{{index}}" bindtap="ReceiveOrderDetails">
+      <view class="order-item" wx:for="{{receiveList}}" wx:key="item" id="{{index}}" bindtap="UpdateOutReceiveOrder">
         <view>
           <image src="../../images/{{item.package.kind}}.png"></image>
         </view>
@@ -30,7 +30,7 @@
       </view>
     </swiper-item>
     <swiper-item>
-      <view class="order-item" wx:for="{{announceList}}" wx:key="item" id="{{index}}" bindtap="AnnounceOrderDetails">
+      <view class="order-item" wx:for="{{announceList}}" wx:key="item" id="{{index}}" bindtap="UpdateOutAnnounceOrder">
         <view>
           <image src="../../images/{{item.package.kind}}.png"></image>
         </view>
