@@ -43,7 +43,7 @@ exports.main = async (event) => {
         // eslint-disable-next-line no-underscore-dangle
         _id: event._id,
       }).get();
-      if (!order.data[0].receiver) {
+      if (order.data[0].receiver) {
         error = '订单已无';
         break;
       }
