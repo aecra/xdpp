@@ -4,8 +4,6 @@ import Event from './utils/event';
 wx.event = new Event();
 App({
   globalData: {
-    loginDisplay: 'none',
-
     // 快递种类
     kindArray: [],
 
@@ -23,6 +21,7 @@ App({
     },
 
     // 用户信息
+    registered: false,
     userInfo: {
       _id: '',
       _openid: '',
@@ -161,12 +160,14 @@ App({
 
     if (result.hasUserInfo) {
       this.globalData.userInfo = result.userInfo;
+      this.globalData.registered = true;
       this.globalData.loginDisplay = 'none';
       wx.event.emit('userInfo', result.userInfo);
+      wx.event.emit('registered', true);
     } else {
-      this.globalData.loginDisplay = 'flex';
+      this.globalData.registered = false;
+      wx.event.emit('registered', false);
     }
-    wx.event.emit('loginDisplay', this.globalData.loginDisplay);
 
     wx.hideLoading();
   },

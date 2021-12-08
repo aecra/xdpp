@@ -47,6 +47,7 @@ Page({
     },
 
     // 用户信息
+    registered: false,
     userInfo: {
       _id: '',
       _openid: '',
@@ -82,6 +83,32 @@ Page({
     values.addr[1] = this.data.addrInfo.multiArray[1][values.addr[1]];
     values.addr[2] = this.data.addrInfo.multiArray[2][values.addr[2]];
     app.Register(values);
+  },
+
+  LoginDisplay() {
+    this.setData({
+      loginDisplay: this.data.loginDisplay === 'none' ? 'flex' : 'none',
+    });
+  },
+
+  Registered() {
+    if (!this.data.received) {
+      const that = this;
+      wx.showModal({
+        title: '提示',
+        content: '是否注册？',
+        confirmText: '注册',
+        success(res) {
+          if (res.confirm) {
+            that.setData({
+              loginDisplay: true,
+            });
+          }
+        },
+      });
+      return false;
+    }
+    return true;
   },
 
   LocalMultiPickerColumnChange(e) {
@@ -153,9 +180,9 @@ Page({
         addrInfo: data,
       });
     });
-    wx.event.on('loginDisplay', (data) => {
+    wx.event.on('registered', (data) => {
       this.setData({
-        loginDisplay: data,
+        registered: data,
       });
     });
   },
@@ -176,7 +203,11 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+    if (this.data.registered) {
+      this.LoginDisplay();
+    }
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

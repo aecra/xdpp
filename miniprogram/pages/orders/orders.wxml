@@ -250,8 +250,8 @@
     </form>
   </view>
 </view>
-<view class="login" style="display:{{loginDisplay}}">
-  <form class="content" bindsubmit="Register">
+<view class="login" style="display:{{loginDisplay}}" bindtap="LoginDisplay">
+  <form class="content" bindsubmit="Register" catchtap="Capture">
     <view class="title">注册</view>
     <scroll-view class="in-content" scroll-y>
       <form class="register">

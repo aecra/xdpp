@@ -49,6 +49,7 @@ Page({
     },
 
     // 用户信息
+    registered: false,
     userInfo: {
       _id: '',
       _openid: '',
@@ -117,6 +118,7 @@ Page({
   },
 
   async Receive() {
+    if (!this.Registered()) { return; }
     wx.showLoading({
       mask: true,
     });
@@ -162,6 +164,32 @@ Page({
     app.Register(values);
   },
 
+  LoginDisplay() {
+    this.setData({
+      loginDisplay: this.data.loginDisplay === 'none' ? 'flex' : 'none',
+    });
+  },
+
+  Registered() {
+    if (!this.data.received) {
+      const that = this;
+      wx.showModal({
+        title: '提示',
+        content: '是否注册？',
+        confirmText: '注册',
+        success(res) {
+          if (res.confirm) {
+            that.setData({
+              loginDisplay: true,
+            });
+          }
+        },
+      });
+      return false;
+    }
+    return true;
+  },
+
   Capture() {},
 
   InitOrderList() {
@@ -203,9 +231,9 @@ Page({
 
   // 从 app 页面同步数据
   DataSync() {
-    wx.event.on('loginDisplay', (data) => {
+    wx.event.on('registered', (data) => {
       this.setData({
-        loginDisplay: data,
+        registered: data,
       });
     });
     wx.event.on('addrInfo', (data) => {
@@ -237,7 +265,11 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {},
+  onShow() {
+    if (this.data.registered) {
+      this.LoginDisplay();
+    }
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

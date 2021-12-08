@@ -18,24 +18,28 @@
   </view>
 
   <view class="table">
-    <view class="table-item" data-change="name" bindtap="UpdateDisplay">
+    <view wx:if="{{registered}}" class="table-item" data-change="name" bindtap="UpdateDisplay">
       <view>姓名：{{userInfo.name}}</view>
       <image src="/images/write.png"></image>
     </view>
-    <view class="table-item" data-change="phone" bindtap="UpdateDisplay">
-      <view>手机号：{{userInfo.phone}}</view>
+    <view wx:if="{{registered}}" class="table-item" data-change="phone" bindtap="UpdateDisplay">
+      <view>手机号后四位：{{userInfo.phone}}</view>
       <image src="/images/write.png"></image>
     </view>
-    <view class="table-item" data-change="qq" bindtap="UpdateDisplay">
-      <view>QQ号：{{userInfo.qq}}</view>
+    <view wx:if="{{registered}}" class="table-item" data-change="email" bindtap="UpdateDisplay">
+      <view>邮箱：{{userInfo.email}}</view>
       <image src="/images/write.png"></image>
     </view>
-    <view class="table-item" data-change="studentid" bindtap="UpdateDisplay">
+    <view wx:if="{{registered}}" class="table-item" data-change="studentid" bindtap="UpdateDisplay">
       <view>学号：{{userInfo.studentid}}</view>
       <image src="/images/write.png"></image>
     </view>
-    <view class="table-item" data-change="addr" bindtap="UpdateDisplay">
+    <view wx:if="{{registered}}" class="table-item" data-change="addr" bindtap="UpdateDisplay">
       <view>{{userInfo.addr[0]}} | {{userInfo.addr[1]}} | {{userInfo.addr[2]}}</view>
+      <image src="/images/write.png"></image>
+    </view>
+    <view wx:if="{{!registered}}" class="table-item" bindtap="LoginDisplay">
+      <view>点击注册</view>
       <image src="/images/write.png"></image>
     </view>
     <view class="table-item">
@@ -47,13 +51,13 @@
     <form class="content" catchtap="Capture" bindsubmit="UpdateUserInfo">
       <view wx:if="{{change === 'name'}}" class="title">姓名设置</view>
       <view wx:if="{{change === 'phone'}}" class="title">手机号设置</view>
-      <view wx:if="{{change === 'qq'}}" class="title">QQ号设置</view>
+      <view wx:if="{{change === 'email'}}" class="title">邮箱设置</view>
       <view wx:if="{{change === 'studentid'}}" class="title">学号设置</view>
       <view wx:if="{{change === 'addr'}}" class="title">收货地址设置</view>
       <view class="in-content">
         <input wx:if="{{change === 'name'}}" name="name" placeholder="姓名" value="{{userInfo.name}}"></input>
         <input wx:if="{{change === 'phone'}}" name="phone" placeholder="手机号" value="{{userInfo.phone}}"></input>
-        <input wx:if="{{change === 'qq'}}" name="qq" placeholder="QQ号" value="{{userInfo.qq}}"></input>
+        <input wx:if="{{change === 'email'}}" name="email" placeholder="邮箱" value="{{userInfo.email}}"></input>
         <input wx:if="{{change === 'studentid'}}" name="studentid" placeholder="11位学号" value="{{userInfo.studentid}}"></input>
         <picker wx:if="{{change === 'addr'}}" name="addr" mode="multiSelector" bindchange="LocalMultiPickerChange" bindcolumnchange="LocalMultiPickerColumnChange" value="{{addrInfo.multiIndex}}" range="{{addrInfo.multiArray}}">
           <view class="picker">
@@ -66,8 +70,8 @@
   </view>
 </view>
 
-<view class="login" style="display:{{loginDisplay}}">
-  <form class="content" bindsubmit="Register">
+<view class="login" style="display:{{loginDisplay}}" bindtap="LoginDisplay">
+  <form class="content" bindsubmit="Register" catchtap="Capture">
     <view class="title">注册</view>
     <scroll-view class="in-content" scroll-y>
       <form class="register">
@@ -78,10 +82,10 @@
           <input placeholder="11位学号" name="studentid"></input>
         </view>
         <view>
-          <input placeholder="手机号" name="phone"></input>
+          <input placeholder="手机号后四位" name="phone"></input>
         </view>
         <view>
-          <input placeholder="QQ号" name="qq"></input>
+          <input placeholder="邮箱" name="email"></input>
         </view>
         <view>
           <picker mode="multiSelector" bindchange="LoginMultiPickerChange" bindcolumnchange="LoginMultiPickerColumnChange" value="{{addrInfo.multiIndex}}" range="{{addrInfo.multiArray}}" name="addr">
