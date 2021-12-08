@@ -112,7 +112,7 @@ Page({
     } else {
       wx.showToast({
         title: result.error,
-        icon: 'none',
+        icon: 'error',
       });
     }
   },
@@ -154,7 +154,7 @@ Page({
     if (orderlist.length === 0) {
       wx.showToast({
         title: '无更多订单',
-        icon: 'none',
+        icon: 'error',
       });
     }
     this.setData({
@@ -176,7 +176,7 @@ Page({
     if (orderlist.length === 0) {
       wx.showToast({
         title: '无更多订单',
-        icon: 'none',
+        icon: 'error',
       });
     }
     this.setData({
@@ -269,7 +269,7 @@ Page({
       wx.hideLoading();
       wx.showToast({
         title: result.error,
-        icon: 'none',
+        icon: 'error',
       });
     }
 

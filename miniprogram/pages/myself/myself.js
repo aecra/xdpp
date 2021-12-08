@@ -134,7 +134,7 @@ Page({
       wx.hideLoading();
       wx.showToast({
         title: result.error,
-        icon: 'none',
+        icon: 'error',
       });
     }
   },

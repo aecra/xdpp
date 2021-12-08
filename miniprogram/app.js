@@ -148,7 +148,7 @@ App({
     } else {
       wx.showToast({
         title: result.error,
-        icon: 'none',
+        icon: 'error',
       });
     }
   },

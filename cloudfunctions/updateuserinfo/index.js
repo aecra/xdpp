@@ -20,7 +20,7 @@ exports.main = async (event) => {
   } else if (event.type === 'studentid' && !studentIdPatt.test(event.studentid)) {
     error = '请正确输入学号';
   } else if (event.type === 'phone' && !phonePatt.test(Number(event.phone))) {
-    error = '请正确输入手机号';
+    error = '正确输入后四位';
   } else if (event.type === 'email' && !emailPatt.test(event.email)) {
     error = '请正确输入邮箱';
   }
