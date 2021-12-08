@@ -21,7 +21,7 @@ exports.main = async (event) => {
     error = '请正确输入QQ号';
   }
 
-  if (error !== null) {
+  if (error == null) {
     const wxContext = cloud.getWXContext();
     const db = cloud.database();
     await db.collection('userlist').add({
