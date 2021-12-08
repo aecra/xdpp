@@ -203,7 +203,7 @@ Page({
       if (result.hasUserInfo) {
         this.data.outReceiveOrder.announcerName = result.userInfo.name;
         this.data.outReceiveOrder.announcerPhone = result.userInfo.phone;
-        this.data.outReceiveOrder.announcerQq = result.userInfo.qq;
+        this.data.outReceiveOrder.announceremail = result.userInfo.email;
       }
     }
     this.setData({
