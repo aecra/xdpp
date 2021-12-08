@@ -135,6 +135,9 @@ App({
   },
 
   async Register(data) {
+    wx.showLoading({
+      mask: true,
+    });
     let result = await wx.cloud.callFunction({
       name: 'register',
       data,
@@ -163,7 +166,9 @@ App({
     } else {
       this.globalData.loginDisplay = 'flex';
     }
-    wx.event.emit('loginDisolay', this.globalData.loginDisplay);
+    wx.event.emit('loginDisplay', this.globalData.loginDisplay);
+
+    wx.hideLoading();
   },
 
   onLaunch() {

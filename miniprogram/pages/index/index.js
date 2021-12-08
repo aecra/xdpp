@@ -53,7 +53,7 @@ Page({
       _id: '',
       _openid: '',
       openid: '',
-      addr: ['', '', ''],
+      addr: ['竹园1号楼', '一层', '1-101'],
       name: '',
       qq: '',
       registerTime: null,
@@ -117,6 +117,9 @@ Page({
   },
 
   async Receive() {
+    wx.showLoading({
+      mask: true,
+    });
     let result = await wx.cloud.callFunction({
       name: 'updateorder',
       data: {
@@ -126,6 +129,8 @@ Page({
       },
     });
     result = result.result;
+
+    wx.hideLoading();
 
     if (result.error === null) {
       wx.showToast({

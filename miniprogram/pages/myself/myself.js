@@ -51,7 +51,7 @@ Page({
       _id: '',
       _openid: '',
       openid: '',
-      addr: ['', '', ''],
+      addr: ['竹园1号楼', '一层', '1-101'],
       name: '',
       qq: '',
       registerTime: null,
@@ -108,6 +108,10 @@ Page({
   },
 
   async UpdateUserInfo(e) {
+    wx.showLoading({
+      mask: true,
+    });
+
     const data = e.detail.value;
     data.type = this.data.change;
     if (this.data.change === 'addr') {
@@ -127,6 +131,7 @@ Page({
       this.ChangeUpdateDisplay();
       app.LoadInfo();
     } else {
+      wx.hideLoading();
       wx.showToast({
         title: result.error,
         icon: 'none',

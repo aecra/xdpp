@@ -57,7 +57,7 @@ Page({
       _id: '',
       _openid: '',
       openid: '',
-      addr: ['', '', ''],
+      addr: ['竹园1号楼', '一层', '1-101'],
       name: '',
       qq: '',
       registerTime: null,
@@ -87,6 +87,10 @@ Page({
   },
 
   async Announce(e) {
+    wx.showLoading({
+      mask: true,
+    });
+
     const data = e.detail.value;
     data.getPack = this.data.packArray[data.getPack];
     data.moveTo[0] = this.data.addrInfo.mybuilding;
@@ -97,6 +101,9 @@ Page({
       data,
     });
     result = result.result;
+
+    wx.hideLoading();
+
     if (result.error === null) {
       wx.showToast({
         title: '发布成功',
@@ -179,6 +186,10 @@ Page({
   },
 
   async UpdateOutReceiveOrder(e) {
+    wx.showLoading({
+      mask: true,
+    });
+
     const { id } = e.currentTarget;
     this.data.outReceiveOrder = this.data.receiveList[id];
     if (!this.data.outReceiveOrder.deliveried) {
@@ -199,10 +210,16 @@ Page({
       outReceiveOrder: this.data.outReceiveOrder,
     });
     this.DisplayChange({ display: 'receiveOrder' });
+
+    wx.hideLoading();
   },
 
   // 发布订单列表处理
   async UpdateOutAnnounceOrder(e) {
+    wx.showLoading({
+      mask: true,
+    });
+
     const { id } = e.currentTarget;
     this.data.outAnnounceOrder = this.data.announceList[id];
     const order = this.data.outAnnounceOrder;
@@ -224,9 +241,15 @@ Page({
       outAnnounceOrder: this.data.announceList[id],
     });
     this.DisplayChange({ display: 'announceOrder' });
+
+    wx.hideLoading();
   },
 
   async UpdateOrder(e) {
+    wx.showLoading({
+      mask: true,
+    });
+
     let result = await wx.cloud.callFunction({
       name: 'updateorder',
       data: {
@@ -243,11 +266,14 @@ Page({
       });
       this.DisplayChange({ display: 'announceOrder' });
     } else {
+      wx.hideLoading();
       wx.showToast({
         title: result.error,
         icon: 'none',
       });
     }
+
+    wx.hideLoading();
   },
 
   LoginMultiPickerColumnChange(e) {
@@ -331,7 +357,17 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {},
+  onPullDownRefresh() {
+    if (this.data.receiveSwiper === 'active') {
+      this.data.receiveListSkip = 0;
+      this.data.receiveList = [];
+      this.ReceiveList();
+    } else {
+      this.data.announceListSkip = 0;
+      this.data.announceList = [];
+      this.AnnounceList();
+    }
+  },
 
   /**
    * 页面上拉触底事件的处理函数
