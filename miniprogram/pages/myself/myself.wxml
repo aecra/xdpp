@@ -43,6 +43,9 @@
       <image src="/images/write.png"></image>
     </view>
     <view class="table-item">
+      <view>版本：1.1.1-beta</view>
+    </view>
+    <view class="table-item">
       <view>问题反馈：jltian@stu.xidian.edu.cn</view>
     </view>
   </view>
