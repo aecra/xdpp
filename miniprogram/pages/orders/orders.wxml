@@ -83,7 +83,7 @@
             <input class="pickup-receiver" name="pickupReceiver" placeholder="收件人姓名" value="{{userInfo.name}}"></input>
           </view>
           <view>
-            <input class="pickup-number" name="pickupNumber" placeholder="收件人手机号" value="{{userInfo.phone}}"></input>
+            <input class="pickup-number" name="pickupNumber" placeholder="收件人手机号后四位" value="{{userInfo.phone}}"></input>
           </view>
           <view>
             <picker class="moveTo" name="moveTo" mode="multiSelector"  bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{addrInfo.multiIndex}}" range="{{addrInfo.multiArray}}">
@@ -140,10 +140,10 @@
           <view style="text-align:center">-快递信息-</view>
           <view>取货码：{{outReceiveOrder.package.pickupCode}}</view>
           <view>收件人姓名：{{outReceiveOrder.package.pickupReceiver}}</view>
-          <view>收件人手机号：{{outReceiveOrder.package.pickupNumber}}</view>
+          <view>收件人手机号后四位：{{outReceiveOrder.package.pickupNumber}}</view>
           <view style="text-align:center">-发布者信息-</view>
           <view>姓名：{{outReceiveOrder.announcerName}}</view>
-          <view>手机号：{{outReceiveOrder.announcerPhone}}</view>
+          <view>手机号后四位：{{outReceiveOrder.announcerPhone}}</view>
           <view>邮箱：{{outReceiveOrder.announceremail}}</view>
         </scroll-view>
         <button data-display="receiveOrder" bindtap="DisplayChange">确定</button>
@@ -171,7 +171,7 @@
           <view style="text-align:center">-快递信息-</view>
           <view>取货码：{{outAnnounceOrder.package.pickupCode}}</view>
           <view>收件人姓名：{{outAnnounceOrder.package.pickupReceiver}}</view>
-          <view>收件人手机号：{{outAnnounceOrder.package.pickupNumber}}</view>
+          <view>收件人手机号后四位：{{outAnnounceOrder.package.pickupNumber}}</view>
         </scroll-view>
         <scroll-view wx:if="{{outAnnounceOrder.canceled != true && outAnnounceOrder.receiver == null}}" class="in-content" scroll-y>
           <image src="../../images/{{outAnnounceOrder.package.kind}}.png"></image>
@@ -187,7 +187,7 @@
           <view style="text-align:center">-快递信息-</view>
           <view>取货码：{{outAnnounceOrder.package.pickupCode}}</view>
           <view>收件人姓名：{{outAnnounceOrder.package.pickupReceiver}}</view>
-          <view>收件人手机号：{{outAnnounceOrder.package.pickupNumber}}</view>
+          <view>收件人手机号后四位：{{outAnnounceOrder.package.pickupNumber}}</view>
         </scroll-view>
         <scroll-view wx:if="{{outAnnounceOrder.canceled != true && outAnnounceOrder.receiver != null && outAnnounceOrder.deliveried == false}}" class="in-content" scroll-y>
           <image src="../../images/{{outAnnounceOrder.package.kind}}.png"></image>
@@ -206,10 +206,10 @@
           <view style="text-align:center">-快递信息-</view>
           <view>取货码：{{outAnnounceOrder.package.pickupCode}}</view>
           <view>收件人姓名：{{outAnnounceOrder.package.pickupReceiver}}</view>
-          <view>收件人手机号：{{outAnnounceOrder.package.pickupNumber}}</view>
+          <view>收件人手机号后四位：{{outAnnounceOrder.package.pickupNumber}}</view>
           <view style="text-align:center">-接单人信息-</view>
           <view>接单人姓名：{{outAnnounceOrder.receiverName}}</view>
-          <view>接单人手机号：{{outAnnounceOrder.receiverPhone}}</view>
+          <view>接单人手机号后四位：{{outAnnounceOrder.receiverPhone}}</view>
           <view>接单人邮箱：{{outAnnounceOrder.receiveremail}}</view>
         </scroll-view>
         <scroll-view wx:if="{{outAnnounceOrder.canceled != true && outAnnounceOrder.receiver != null && outAnnounceOrder.deliveried == true}}" class="in-content" scroll-y>
@@ -232,7 +232,7 @@
           <view style="text-align:center">-快递信息-</view>
           <view>取货码：{{outAnnounceOrder.package.pickupCode}}</view>
           <view>收件人姓名：{{outAnnounceOrder.package.pickupReceiver}}</view>
-          <view>收件人手机号：{{outAnnounceOrder.package.pickupNumber}}</view>
+          <view>收件人手机号后四位：{{outAnnounceOrder.package.pickupNumber}}</view>
         </scroll-view>
         <button wx:if="{{outAnnounceOrder.canceled == true}}" data-display="announceOrder" bindtap="DisplayChange">
           确定

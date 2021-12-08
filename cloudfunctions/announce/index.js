@@ -14,7 +14,7 @@ exports.main = async (event) => {
   } else if (!namePatt.test(event.pickupReceiver)) {
     error = '请正确输入姓名';
   } else if (!pickupNumberPatt.test(event.pickupNumber)) {
-    error = '请正确输入手机号';
+    error = '正确输入后四位';
   } else if (event.reward === '') {
     error = '请输入酬劳';
   }
