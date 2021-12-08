@@ -144,7 +144,7 @@
           <view style="text-align:center">-发布者信息-</view>
           <view>姓名：{{outReceiveOrder.announcerName}}</view>
           <view>手机号：{{outReceiveOrder.announcerPhone}}</view>
-          <view>QQ号：{{outReceiveOrder.announcerQq}}</view>
+          <view>邮箱：{{outReceiveOrder.announceremail}}</view>
         </scroll-view>
         <button data-display="receiveOrder" bindtap="DisplayChange">确定</button>
       </view>
@@ -210,7 +210,7 @@
           <view style="text-align:center">-接单人信息-</view>
           <view>接单人姓名：{{outAnnounceOrder.receiverName}}</view>
           <view>接单人手机号：{{outAnnounceOrder.receiverPhone}}</view>
-          <view>接单人QQ号：{{outAnnounceOrder.receiverQq}}</view>
+          <view>接单人邮箱：{{outAnnounceOrder.receiveremail}}</view>
         </scroll-view>
         <scroll-view wx:if="{{outAnnounceOrder.canceled != true && outAnnounceOrder.receiver != null && outAnnounceOrder.deliveried == true}}" class="in-content" scroll-y>
           <image src="../../images/{{outAnnounceOrder.package.kind}}.png"></image>
@@ -262,10 +262,10 @@
           <input placeholder="11位学号" name="studentid"></input>
         </view>
         <view>
-          <input placeholder="手机号" name="phone"></input>
+          <input placeholder="手机号后四位" name="phone"></input>
         </view>
         <view>
-          <input placeholder="QQ号" name="qq"></input>
+          <input placeholder="邮箱" name="email"></input>
         </view>
         <view>
           <picker mode="multiSelector" bindchange="LoginMultiPickerChange" bindcolumnchange="LoginMultiPickerColumnChange" value="{{addrInfo.multiIndex}}" range="{{addrInfo.multiArray}}" name="addr">

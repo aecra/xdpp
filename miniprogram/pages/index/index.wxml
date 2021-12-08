@@ -121,10 +121,10 @@
           <input placeholder="11位学号" name="studentid"></input>
         </view>
         <view>
-          <input placeholder="手机号" name="phone"></input>
+          <input placeholder="手机号后四位" name="phone"></input>
         </view>
         <view>
-          <input placeholder="QQ号" name="qq"></input>
+          <input placeholder="邮箱" name="email"></input>
         </view>
         <view>
           <picker mode="multiSelector" bindchange="LoginMultiPickerChange" bindcolumnchange="LoginMultiPickerColumnChange" value="{{addrInfo.multiIndex}}" range="{{addrInfo.multiArray}}" name="addr">

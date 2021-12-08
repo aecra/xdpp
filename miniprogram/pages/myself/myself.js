@@ -53,7 +53,7 @@ Page({
       openid: '',
       addr: ['竹园1号楼', '一层', '1-101'],
       name: '',
-      qq: '',
+      email: '',
       registerTime: null,
       studentid: null,
       phone: null,

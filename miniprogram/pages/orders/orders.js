@@ -59,7 +59,7 @@ Page({
       openid: '',
       addr: ['竹园1号楼', '一层', '1-101'],
       name: '',
-      qq: '',
+      email: '',
       registerTime: null,
       studentid: null,
       phone: null,
@@ -234,7 +234,7 @@ Page({
       if (result.hasUserInfo) {
         this.data.outAnnounceOrder.receiverName = result.userInfo.name;
         this.data.outAnnounceOrder.receiverPhone = result.userInfo.phone;
-        this.data.outAnnounceOrder.receiverQq = result.userInfo.qq;
+        this.data.outAnnounceOrder.receiveremail = result.userInfo.email;
       }
     }
     this.setData({
