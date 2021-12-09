@@ -3,154 +3,102 @@
   <view class="banner">
     <swiper autoplay circular>
       <swiper-item>
-        <image src="../../images/banner.jpg" data-src="../../images/banner.jpg" bindtap="BannerSee"></image>
+        <image src="../../images/banner1.png" data-src="../../images/banner1.png"></image>
       </swiper-item>
       <swiper-item>
-        <image src="../../images/banner.jpg" data-src="../../images/banner.jpg" bindtap="BannerSee"></image>
+        <image src="../../images/banner2.png" data-src="../../images/banner2.png"></image>
       </swiper-item>
     </swiper>
   </view>
 
   <view class="score">
-    <button bindtap="UpdataMotto" bindlongtap="CopyMooto">
+    <button bindtap="UpdataMotto">
       <text>{{oneMotto}}</text>
     </button>
   </view>
 
   <view class="table">
-    <view class="table-item" bindtap="ChangeNameSetDisplayState">
-      <view>姓名:{{userInfo.name}}</view>
+    <view wx:if="{{registered}}" class="table-item" data-change="name" bindtap="UpdateDisplay">
+      <view>姓名：{{userInfo.name}}</view>
       <image src="/images/write.png"></image>
     </view>
-    <view class="table-item" bindtap="ChangePhoneSetDisplayState">
-      <view>手机号:{{userInfo.phone}}</view>
+    <view wx:if="{{registered}}" class="table-item" data-change="phone" bindtap="UpdateDisplay">
+      <view>手机号后四位：{{userInfo.phone}}</view>
       <image src="/images/write.png"></image>
     </view>
-    <view class="table-item" bindtap="ChangeQqSetDisplayState">
-      <view>QQ号:{{userInfo.qq}}</view>
+    <view wx:if="{{registered}}" class="table-item" data-change="email" bindtap="UpdateDisplay">
+      <view>邮箱：{{userInfo.email}}</view>
       <image src="/images/write.png"></image>
     </view>
-    <view class="table-item" bindtap="ChangeStudentIdSetDisplayState">
-      <view>学号:{{userInfo.student_id}}</view>
+    <view wx:if="{{registered}}" class="table-item" data-change="studentid" bindtap="UpdateDisplay">
+      <view>学号：{{userInfo.studentid}}</view>
       <image src="/images/write.png"></image>
     </view>
-    <view class="table-item" bindtap="ChangeAddressSetDisplayState">
-      <view>{{userInfo.defaultaddr[0]}} | {{userInfo.defaultaddr[1]}} | {{userInfo.defaultaddr[2]}}</view>
+    <view wx:if="{{registered}}" class="table-item" data-change="addr" bindtap="UpdateDisplay">
+      <view>{{userInfo.addr[0]}} | {{userInfo.addr[1]}} | {{userInfo.addr[2]}}</view>
       <image src="/images/write.png"></image>
     </view>
-    <view class="ad-item">
-      <swiper class="ad-swiper" autoplay vertical circular>
-        <swiper-item>
-          <image src="../../images/banner.jpg" data-src="../../images/banner.jpg" bindtap="AdSee"></image>
-        </swiper-item>
-        <swiper-item>
-          <image src="../../images/banner.jpg" data-src="../../images/banner.jpg" bindtap="AdSee"></image>
-        </swiper-item>
-        <swiper-item>
-          <image src="../../images/banner.jpg" data-src="../../images/banner.jpg" bindtap="AdSee"></image>
-        </swiper-item>
-      </swiper>
-    </view>
-    <view class="table-item" bindtap="LeavingMessage">
-        <view>留言给开发者</view>
+    <view wx:if="{{!registered}}" class="table-item" bindtap="LoginDisplay">
+      <view>点击注册</view>
+      <image src="/images/write.png"></image>
     </view>
     <view class="table-item">
-      <view>
-        <navigator url="/pages/about-us/about-us" hover-class="navigator-hover">关于我们</navigator>
+      <view>版本：2.0.0-beta</view>
+    </view>
+    <view class="table-item">
+      <view>问题反馈：admin@aecra.cn</view>
+    </view>
+  </view>
+
+  <view class="userinfoupdate" style="display:{{updateDisplay}}" bindtap="ChangeUpdateDisplay">
+    <form class="content" catchtap="Capture" bindsubmit="UpdateUserInfo">
+      <view wx:if="{{change === 'name'}}" class="title">姓名设置</view>
+      <view wx:if="{{change === 'phone'}}" class="title">手机号设置</view>
+      <view wx:if="{{change === 'email'}}" class="title">邮箱设置</view>
+      <view wx:if="{{change === 'studentid'}}" class="title">学号设置</view>
+      <view wx:if="{{change === 'addr'}}" class="title">收货地址设置</view>
+      <view class="in-content">
+        <input wx:if="{{change === 'name'}}" name="name" placeholder="姓名" value="{{userInfo.name}}"></input>
+        <input wx:if="{{change === 'phone'}}" name="phone" placeholder="手机号" value="{{userInfo.phone}}"></input>
+        <input wx:if="{{change === 'email'}}" name="email" placeholder="邮箱" value="{{userInfo.email}}"></input>
+        <input wx:if="{{change === 'studentid'}}" name="studentid" placeholder="11位学号" value="{{userInfo.studentid}}"></input>
+        <picker wx:if="{{change === 'addr'}}" name="addr" mode="multiSelector" bindchange="LocalMultiPickerChange" bindcolumnchange="LocalMultiPickerColumnChange" value="{{addrInfo.multiIndex}}" range="{{addrInfo.multiArray}}">
+          <view class="picker">
+            {{addrInfo.mybuilding}} | {{addrInfo.myfloor}} | {{addrInfo.myroom}}
+          </view>
+        </picker>
       </view>
-      <view>
-        <navigator url="/pages/agreement/agreement" hover-class="navigator-hover">《用户协议》</navigator>
-      </view>
-    </view>
+      <button formType="submit">确定</button>
+    </form>
   </view>
+</view>
 
-  <view class="name-set" style="display:{{nameSetDisplay}}" bindtap="ChangeNameSetDisplayState">
-    <view class="content" catchtap="kongbai">
-      <view class="title">姓名设置</view>
-        <view class="in-content">
-          <input placeholder="姓名" value="{{userInfo.name}}" bindinput="InputLocalName"></input>
+<view class="login" style="display:{{loginDisplay}}" bindtap="LoginDisplay">
+  <form class="content" bindsubmit="Register" catchtap="Capture">
+    <view class="title">注册</view>
+    <scroll-view class="in-content" scroll-y>
+      <form class="register">
+        <view>
+          <input placeholder="姓名" name="name"></input>
         </view>
-        <button bindtap="UpdataName">确定</button>
-    </view>
-  </view>
-
-  <view class="phone-set" style="display:{{phoneSetDisplay}}" bindtap="ChangePhoneSetDisplayState">
-    <view class="content" catchtap="kongbai">
-      <view class="title">手机号设置</view>
-        <view class="in-content">
-          <input placeholder="手机号" value="{{userInfo.phone}}" bindinput="InputLocalPhone"></input>
+        <view>
+          <input placeholder="11位学号" name="studentid"></input>
         </view>
-        <button bindtap="UpdataPhone">确定</button>
-    </view>
-  </view>
-
-  <view class="qq-set" style="display:{{qqSetDisplay}}" bindtap="ChangeQqSetDisplayState">
-    <view class="content" catchtap="kongbai">
-      <view class="title">QQ号设置</view>
-        <view class="in-content">
-          <input placeholder="QQ号" value="{{userInfo.qq}}" bindinput="InputLocalQq"></input>
+        <view>
+          <input placeholder="手机号后四位" name="phone"></input>
         </view>
-        <button bindtap="UpdataQq">确定</button>
-    </view>
-  </view>
-
-  <view class="student-id-set" style="display:{{studentIdSetDisplay}}" bindtap="ChangeStudentIdSetDisplayState">
-    <view class="content" catchtap="kongbai">
-      <view class="title">学号设置</view>
-        <view class="in-content">
-          <input placeholder="11位学号" value="{{userInfo.student_id}}" bindinput="InputLocalStudentId"></input>
+        <view>
+          <input placeholder="邮箱" name="email"></input>
         </view>
-        <button bindtap="UpdataStudentId">确定</button>
-    </view>
-  </view>
-
-  <view class="address-set" style="display:{{addressSetDisplay}}" bindtap="ChangeAddressSetDisplayState">
-    <view class="content" catchtap="kongbai">
-      <view class="title">默认收货地址设置</view>
-        <view class="in-content">
-          <picker mode="multiSelector" bindchange="LocalMultiPickerChange" bindcolumnchange="LocalMultiPickerColumnChange" value="{{addrInfo.multiIndex}}" range="{{addrInfo.multiArray}}">
+        <view>
+          <picker mode="multiSelector" bindchange="LoginMultiPickerChange" bindcolumnchange="LoginMultiPickerColumnChange" value="{{addrInfo.multiIndex}}" range="{{addrInfo.multiArray}}" name="addr">
             <view class="picker">
-              {{addrInfo.mybuilding}} | {{addrInfo.myfloor}} | {{addrInfo.myroom}}
+              {{userInfo.addr[0]}} | {{userInfo.addr[1]}} | {{userInfo.addr[2]}}
             </view>
           </picker>
         </view>
-        <button bindtap="UpdataAddress">确定</button>
-    </view>
-  </view>
-
-  <view class="login" style="display:{{loginDisplay}}">
-    <view class="content" catchtap="kongbai">
-      <view class="title">注册</view>
-        <scroll-view class="in-content" scroll-y>
-          <form class="register">
-            <view>
-              <input placeholder="姓名" value="{{userInfo.name}}" bindinput="InputName"></input>
-            </view>
-            <view>
-              <input placeholder="11位学号" value="{{userInfo.student_id}}" bindinput="InputStudentId"></input>
-            </view>
-            <view>
-              <input placeholder="手机号" value="{{userInfo.phone}}" bindinput="InputPhone"></input>
-            </view>
-            <view>
-              <input placeholder="QQ号" value="{{userInfo.qq}}" bindinput="InputQq"></input>
-            </view>
-            <view>
-              <picker mode="multiSelector" bindchange="LoginMultiPickerChange" bindcolumnchange="LoginMultiPickerColumnChange" value="{{addrInfo.multiIndex}}" range="{{addrInfo.multiArray}}">
-                <view class="picker">
-                  {{userInfo.defaultaddr[0]}} | {{userInfo.defaultaddr[1]}} | {{userInfo.defaultaddr[2]}}
-                </view>
-              </picker>
-            </view>
-            <view style="display:flex;align-items:center">
-                <switch id="checkbox" bindchange="InputAgreement" type="checkbox" aria-checked="{{userInfo.agreement}}" value="{{userInfo.agreement}}"></switch>
-                <label class="checkbox" for="checkbox">
-                  我已同意<navigator url="/pages/agreement/agreement" hover-class="navigator-hover"> 《用户协议》</navigator>，并确保信息的准确性
-                </label>
-            </view>
-          </form>
-        </scroll-view>
-        <button open-type="getUserInfo" bindgetuserinfo="Register">确认</button>
-    </view>
-  </view>
+      </form>
+    </scroll-view>
+    <button formType="submit" bindgetuserinfo="Register">确认</button>
+  </form>
 </view>

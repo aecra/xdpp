@@ -1,39 +1,37 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/orders/orders",
-    "pages/myself/myself",
-    "pages/agreement/agreement",
-    "pages/about-us/about-us"
-  ],
-  "window": {
-    "backgroundColor": "#F6F6F6",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "西电跑跑",
-    "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "color": "#E9E9E9",
-    "selectedColor": "#004181",
-    "list": [{
-        "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "images/index1.png",
-        "selectedIconPath": "images/index2.png"
-      },{
-        "pagePath": "pages/orders/orders",
-        "text": "订单",
-        "iconPath": "images/orders1.png",
-        "selectedIconPath": "images/orders2.png"
-      },{
-        "pagePath": "pages/myself/myself",
-        "text": "我的",
-        "iconPath": "images/myself1.png",
-        "selectedIconPath": "images/myself2.png"
-      }
-    ]
-  },
-  "sitemapLocation": "sitemap.json",
-  "style": "v2"
+    "entryPagePath": "pages/index/index",
+    "pages": [
+        "pages/index/index",
+        "pages/orders/orders",
+        "pages/myself/myself"
+    ],
+    "window": {
+        "backgroundColor": "#F6F6F6",
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#F6F6F6",
+        "navigationBarTitleText": "西电跑跑",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#E9E9E9",
+        "selectedColor": "#AF2125",
+        "list": [{
+            "pagePath": "pages/index/index",
+            "text": "首页",
+            "iconPath": "images/index1.png",
+            "selectedIconPath": "images/index2.png"
+        }, {
+            "pagePath": "pages/orders/orders",
+            "text": "订单",
+            "iconPath": "images/orders1.png",
+            "selectedIconPath": "images/orders2.png"
+        }, {
+            "pagePath": "pages/myself/myself",
+            "text": "我的",
+            "iconPath": "images/myself1.png",
+            "selectedIconPath": "images/myself2.png"
+        }]
+    },
+    "sitemapLocation": "sitemap.json",
+    "style": "v2"
 }
