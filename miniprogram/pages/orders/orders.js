@@ -331,6 +331,11 @@ Page({
       this.setData({
         registered: data,
       });
+      if (data) {
+        this.setData({
+          loginDisplay: 'none',
+        })
+      }
     });
     wx.event.on('addrInfo', (data) => {
       this.setData({
@@ -373,7 +378,9 @@ Page({
    */
   onShow() {
     if (this.data.registered) {
-      this.LoginDisplay();
+      this.setData({
+        loginDisplay: 'none',
+      })
     }
   },
 

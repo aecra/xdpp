@@ -184,6 +184,11 @@ Page({
       this.setData({
         registered: data,
       });
+      if (data) {
+        this.setData({
+          loginDisplay: 'none',
+        })
+      }
     });
   },
 
@@ -205,7 +210,9 @@ Page({
    */
   onShow() {
     if (this.data.registered) {
-      this.LoginDisplay();
+      this.setData({
+        loginDisplay: 'none',
+      })
     }
   },
 
