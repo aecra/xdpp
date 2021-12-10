@@ -12,7 +12,7 @@ exports.main = async (event) => {
 
   let error = null;
   const namePatt = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/;
-  const pickupNumberPatt = /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/;
+  const pickupNumberPatt = /^[0-9]{4}$/;
 
   if (event.pickupCode === '') {
     error = '请输入取货码';
