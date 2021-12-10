@@ -15,4 +15,4 @@ async function hasUserInfo(openid) {
   return true;
 }
 
-export default hasUserInfo;
+module.exports = hasUserInfo;
