@@ -8,6 +8,9 @@ exports.main = async (event) => {
   const wxContext = cloud.getWXContext();
   const db = cloud.database();
   let error = null;
+  if (!hasUserInfo(wxContext.OPENID)) {
+    return { error: '该用户不存在' };
+  }
 
   switch (event.kind) {
     case 'cancel':

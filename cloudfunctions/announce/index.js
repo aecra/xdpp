@@ -1,10 +1,15 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk');
+const hasUserInfo = require('./hasUserInfo');
 
 cloud.init();
 
 // 云函数入口函数
 exports.main = async (event) => {
+  if (!hasUserInfo(cloud.getWXContext().OPENID)) {
+    return { error: '该用户不存在' };
+  }
+
   let error = null;
   const namePatt = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/;
   const pickupNumberPatt = /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/;
