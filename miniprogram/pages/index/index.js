@@ -171,7 +171,7 @@ Page({
   },
 
   Registered() {
-    if (!this.data.received) {
+    if (!this.data.registered) {
       const that = this;
       wx.showModal({
         title: '提示',
@@ -238,7 +238,7 @@ Page({
       if (data) {
         this.setData({
           loginDisplay: 'none',
-        })
+        });
       }
     });
     wx.event.on('addrInfo', (data) => {
@@ -274,7 +274,7 @@ Page({
     if (this.data.registered) {
       this.setData({
         loginDisplay: 'none',
-      })
+      });
     }
   },
 
@@ -292,6 +292,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
+    this.OrderData();
     this.InitOrderList();
   },
 
@@ -299,7 +300,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-    // this.OrderList();
+    this.OrderList();
   },
 
   /**

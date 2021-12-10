@@ -304,7 +304,7 @@ Page({
   },
 
   Registered() {
-    if (!this.data.received) {
+    if (!this.data.registered) {
       const that = this;
       wx.showModal({
         title: '提示',
@@ -334,7 +334,7 @@ Page({
       if (data) {
         this.setData({
           loginDisplay: 'none',
-        })
+        });
       }
     });
     wx.event.on('addrInfo', (data) => {
@@ -380,7 +380,7 @@ Page({
     if (this.data.registered) {
       this.setData({
         loginDisplay: 'none',
-      })
+      });
     }
   },
 
