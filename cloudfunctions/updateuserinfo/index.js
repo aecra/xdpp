@@ -25,16 +25,19 @@ exports.main = async (event) => {
     error = '请正确输入邮箱';
   }
 
-  if (error === null) {
-    await db.collection('userlist').where({
-      openid: wxContext.OPENID,
-    }).update({
-      data,
-      fail() {
-        error = '修改失败';
-      },
-    });
+  if (error) {
+    return { error };
   }
+
+  await db.collection('userlist').where({
+    openid: wxContext.OPENID,
+  }).update({
+    data,
+    fail() {
+      error = '修改失败';
+    },
+  });
+
   return {
     error,
   };

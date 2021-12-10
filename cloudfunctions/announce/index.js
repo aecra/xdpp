@@ -24,44 +24,47 @@ exports.main = async (event) => {
     error = '请输入酬劳';
   }
 
-  if (error == null) {
-    const wxContext = cloud.getWXContext();
-    const db = cloud.database();
-    await db.collection('orderlist').add({
-      data: {
-        announcer: wxContext.OPENID,
-        announceTime: new Date(),
-        receiver: null,
-        receiveTime: null,
-        deliveried: false,
-        deliveriedTime: null,
-        canceled: false,
-        canceledTime: null,
-        package: {
-          getPack: event.getPack,
-          pickupCode: event.pickupCode,
-          kind: event.kind,
-          pickupReceiver: event.pickupReceiver,
-          pickupNumber: event.pickupNumber,
-          moveTo: [
-            event.moveTo[0],
-            event.moveTo[1],
-            event.moveTo[2],
-          ],
-          reward: event.reward,
-          remarks: event.remarks,
-        },
-      },
-      success() {
-        wx.showToast({
-          title: '发布成功',
-        });
-      },
-      fail() {
-        error = '注册失败';
-      },
-    });
+  if (error) {
+    return { error };
   }
+
+  const wxContext = cloud.getWXContext();
+  const db = cloud.database();
+  await db.collection('orderlist').add({
+    data: {
+      announcer: wxContext.OPENID,
+      announceTime: new Date(),
+      receiver: null,
+      receiveTime: null,
+      deliveried: false,
+      deliveriedTime: null,
+      canceled: false,
+      canceledTime: null,
+      package: {
+        getPack: event.getPack,
+        pickupCode: event.pickupCode,
+        kind: event.kind,
+        pickupReceiver: event.pickupReceiver,
+        pickupNumber: event.pickupNumber,
+        moveTo: [
+          event.moveTo[0],
+          event.moveTo[1],
+          event.moveTo[2],
+        ],
+        reward: event.reward,
+        remarks: event.remarks,
+      },
+    },
+    success() {
+      wx.showToast({
+        title: '发布成功',
+      });
+    },
+    fail() {
+      error = '注册失败';
+    },
+  });
+
   return {
     error,
   };

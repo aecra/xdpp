@@ -21,24 +21,26 @@ exports.main = async (event) => {
     error = '请正确输入邮箱';
   }
 
-  if (error == null) {
-    const wxContext = cloud.getWXContext();
-    const db = cloud.database();
-    await db.collection('userlist').add({
-      data: {
-        openid: wxContext.OPENID,
-        registerTime: new Date(),
-        name: event.name,
-        phone: event.phone,
-        email: event.email,
-        studentid: event.studentid,
-        addr: [event.addr[0], event.addr[1], event.addr[2]],
-      },
-      fail() {
-        error = '注册失败';
-      },
-    });
+  if (error) {
+    return { error };
   }
+
+  const wxContext = cloud.getWXContext();
+  const db = cloud.database();
+  await db.collection('userlist').add({
+    data: {
+      openid: wxContext.OPENID,
+      registerTime: new Date(),
+      name: event.name,
+      phone: event.phone,
+      email: event.email,
+      studentid: event.studentid,
+      addr: [event.addr[0], event.addr[1], event.addr[2]],
+    },
+    fail() {
+      error = '注册失败';
+    },
+  });
 
   return {
     error,
